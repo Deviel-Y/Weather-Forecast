@@ -13,7 +13,11 @@ const LoginForm = () => {
  const navigate = useNavigate();
  const [isLoading, setIsLoading] = useState<boolean>(false);
 
- const { register, handleSubmit } = useForm<LoginSchemaType>({
+ const {
+  register,
+  handleSubmit,
+  formState: { errors },
+ } = useForm<LoginSchemaType>({
   resolver: zodResolver(loginSchema),
  });
 
@@ -22,6 +26,7 @@ const LoginForm = () => {
    <div className=" flex flex-col items-center flex-1 w-[506px]">
     {/* Login Form Side Container */}
     <form
+     noValidate
      onSubmit={handleSubmit((data) => {
       setIsLoading(true);
       localStorage.setItem("name", data.name);
@@ -35,10 +40,12 @@ const LoginForm = () => {
      <div className=" w-full gap-8 flex flex-col items-center">
       <h1 className="font-bold text-2xl">Login</h1>
       <TextField
+       error={!!errors.name?.message}
        {...register("name")}
        className="w-full"
        required
        placeholder="Enter Your Name"
+       helperText={errors.name?.message}
       />
      </div>
 
