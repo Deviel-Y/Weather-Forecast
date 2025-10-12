@@ -1,35 +1,53 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import loginPagePicture from "../../assets/loginPagePicture.png";
+import {
+ loginSchema,
+ type LoginSchemaType,
+} from "../../utils/validationSchema";
 
 const LoginForm = () => {
  const navigate = useNavigate();
  const [isLoading, setIsLoading] = useState<boolean>(false);
 
+ const { register, handleSubmit } = useForm<LoginSchemaType>({
+  resolver: zodResolver(loginSchema),
+ });
+
  return (
   <div className="flex flex-row w-[960px] h-[560px] bg-white rounded-xl shadow-[0_4px_8px_0_rgba(0,0,0,0.25)]">
    <div className=" flex flex-col items-center flex-1 w-[506px]">
     {/* Login Form Side Container */}
-    <form className="flex flex-col items-center justify-between px-[60px] w-full h-full py-28">
+    <form
+     onSubmit={handleSubmit((data) => {
+      setIsLoading(true);
+      localStorage.setItem("name", data.name);
+
+      setTimeout(() => {
+       navigate("/");
+      }, 3000);
+     })}
+     className="flex flex-col items-center justify-between px-[60px] w-full h-full py-28"
+    >
      <div className=" w-full gap-8 flex flex-col items-center">
       <h1 className="font-bold text-2xl">Login</h1>
-      <TextField className="w-full" required placeholder="Enter Your Name" />
+      <TextField
+       {...register("name")}
+       className="w-full"
+       required
+       placeholder="Enter Your Name"
+      />
      </div>
 
      <Button
+      type="submit"
       className="w-full h-11"
       loadingPosition="end"
       loading={isLoading}
       variant="contained"
-      onClick={() => {
-       setIsLoading(true);
-       localStorage.setItem("name", "Daniel");
-
-       setTimeout(() => {
-        navigate("/");
-       }, 3000);
-      }}
      >
       Login
      </Button>
