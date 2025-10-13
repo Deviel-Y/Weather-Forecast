@@ -1,13 +1,19 @@
 import { create } from "zustand";
 
-interface UserStore {
- user: { name: string };
- setUser: (userName: string) => void;
+interface CityStore {
+ cityAttrebutes: {
+  name: string;
+  latitude: number;
+  longitude: number;
+ };
+
+ setCityAttrebutes: (latitude: number, longitude: number, name: string) => void;
 }
 
-const useUserQuery = create<UserStore>((set) => ({
- user: { name: "" },
- setUser: (userName) => set({ user: { name: userName } }),
+const useUserQuery = create<CityStore>((set) => ({
+ cityAttrebutes: { latitude: 0, longitude: 0, name: "" },
+ setCityAttrebutes: (latitude, longitude, name) =>
+  set(() => ({ cityAttrebutes: { latitude, longitude, name } })),
 }));
 
 export default useUserQuery;
