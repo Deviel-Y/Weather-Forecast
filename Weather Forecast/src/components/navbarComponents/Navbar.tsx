@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import logoIcon from "../../assets/logo.png";
 import cityList from "../../data/cityList.json";
 import OptionPopoverButton from "./OptionPopoverButton";
+import NavbarPopoverContent from "./NavbarPopoverContent";
 
 const Navbar = () => {
   return (
@@ -27,9 +28,7 @@ const Navbar = () => {
         />
 
         <OptionPopoverButton>
-          <div className="w-52 h-56">
-            <p>Test Text</p>
-          </div>
+          <NavbarPopoverContent />
         </OptionPopoverButton>
       </div>
     </nav>
