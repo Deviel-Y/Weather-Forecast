@@ -1,14 +1,14 @@
 import { Outlet } from "react-router";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbarComponents/Navbar";
 
 const HomePageLayout = () => {
- return (
-  <div className="h-screen w-full flex flex-col">
-   <Navbar />
+  return (
+    <div className="h-screen w-full flex flex-col">
+      <Navbar />
 
-   <Outlet />
-  </div>
- );
+      <Outlet />
+    </div>
+  );
 };
 
 export default HomePageLayout;
