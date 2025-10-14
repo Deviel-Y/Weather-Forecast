@@ -1,6 +1,6 @@
+import { lazy, Suspense } from "react";
 import CardContainer from "../components/CardContainer";
 import CurrentWeatherCard from "../components/dashboardComponents/currentWeather/CurrentWeatherCard";
-import MonthlyTemperatureChart from "../components/dashboardComponents/monthlyAverageChart/MonthlyAverageWheatherDataChart";
 import Navbar from "../components/navbarComponents/Navbar";
 import useCurrentWeather from "../hooks/useWeatherData";
 import useCityQueryStore from "../store";
@@ -11,6 +11,12 @@ import {
 } from "../utils/weatherCodeMapping";
 
 const HomePage = () => {
+ const MonthlyTemperatureChart = lazy(
+  () =>
+   import(
+    "../components/dashboardComponents/monthlyAverageChart/MonthlyAverageWheatherDataChart.tsx"
+   )
+ );
  const { latitude, longitude, name } = useCityQueryStore(
   (state) => state.cityAttrebutes
  );
@@ -56,9 +62,11 @@ const HomePage = () => {
       Average Monthly Temprature
      </p>
 
-     <div className="w-full ps-8">
-      <MonthlyTemperatureChart data={monthlyAverageChartData} />
-     </div>
+     <Suspense fallback={<p>Loading Chart...</p>}>
+      <div className="w-full ps-8">
+       <MonthlyTemperatureChart data={monthlyAverageChartData} />
+      </div>
+     </Suspense>
     </CardContainer>
    </div>
   </div>
