@@ -1,7 +1,7 @@
 interface TempratureProps {
-  currentTemp: string;
-  highTemp: string;
-  lowTemp: string;
+  currentTemp: number;
+  highTemp: number;
+  lowTemp: number;
 }
 
 const CurrentTempratureStatus = ({
