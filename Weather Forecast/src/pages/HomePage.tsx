@@ -6,7 +6,7 @@ import useCurrentWeather from "../hooks/useWeatherData";
 import useCityQueryStore from "../store";
 import { getMonthlyAverageTemps } from "../utils/getMonthlyAverageTemps";
 
-const HomePageLayout = () => {
+const HomePage = () => {
  const { latitude, longitude, name } = useCityQueryStore(
   (state) => state.cityAttrebutes
  );
@@ -51,4 +51,4 @@ const HomePageLayout = () => {
  );
 };
 
-export default HomePageLayout;
+export default HomePage;
