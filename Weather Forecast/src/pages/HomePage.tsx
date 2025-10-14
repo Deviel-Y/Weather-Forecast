@@ -21,11 +21,11 @@ const HomePage = () => {
  );
 
  return (
-  <div className="h-screen w-full flex flex-col gap-7">
+  <div className="h-screen w-full flex flex-col">
    <Navbar />
 
-   <div className="grid grid-cols-12 w-full gap-10">
-    <CardContainer additionalStyles="flex flex-1 items-center justify-center col-span-5">
+   <div className="grid grid-cols-12 w-full gap-10 px-6 py-7">
+    <CardContainer additionalStyles="flex flex-1 items-center justify-center col-span-5 px-6 pt-5 pb-[17px] shadow-[0_4px_10px_0_rgba(0,0,0,0.15)]">
      <CurrentWeatherCard
       cityName={name}
       weatherCode={currentWeather.data?.current.weather_code ?? 0}
@@ -39,12 +39,14 @@ const HomePage = () => {
      />
     </CardContainer>
 
-    <CardContainer additionalStyles="flex flex-col col-span-7">
+    <CardContainer additionalStyles="flex flex-col gap-1 col-span-7 p-4">
      <p className="font-bold text-lg font-sans text-[#1B2767]">
       Average Monthly Temprature
      </p>
 
-     <MonthlyTemperatureChart data={monthlyAverageChartData} />
+     <div className="w-full ps-8">
+      <MonthlyTemperatureChart data={monthlyAverageChartData} />
+     </div>
     </CardContainer>
    </div>
   </div>

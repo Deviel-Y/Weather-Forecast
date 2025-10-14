@@ -65,7 +65,7 @@ function MonthlyTemperatureChart({ data }: Props) {
       opacity: 0.4,
      },
     }}
-    height={160}
+    height={170}
    />
   </div>
  );
