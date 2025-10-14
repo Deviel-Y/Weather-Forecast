@@ -5,6 +5,10 @@ import Navbar from "../components/navbarComponents/Navbar";
 import useCurrentWeather from "../hooks/useWeatherData";
 import useCityQueryStore from "../store";
 import { getMonthlyAverageTemps } from "../utils/getMonthlyAverageTemps";
+import {
+ weatherCodeMapping,
+ type WeatherCodeType,
+} from "../utils/weatherCodeMapping";
 
 const HomePage = () => {
  const { latitude, longitude, name } = useCityQueryStore(
@@ -28,14 +32,22 @@ const HomePage = () => {
     <CardContainer additionalStyles="flex flex-1 items-center justify-center col-span-5 px-6 pt-5 pb-[17px] shadow-[0_4px_10px_0_rgba(0,0,0,0.15)]">
      <CurrentWeatherCard
       cityName={name}
-      weatherCode={currentWeather.data?.current.weather_code ?? 0}
+      weatherFigure={
+       weatherCodeMapping[
+        currentWeather?.data?.current?.weather_code as WeatherCodeType
+       ]?.figure
+      }
       tempraure={{
        currentTemp: currentWeather.data?.current.temperature_2m ?? 0,
        feelsLikeTemp: currentWeather.data?.current.apparent_temperature ?? 0,
        highTemp: currentWeather.data?.daily.temperature_2m_max[0] ?? 0,
        lowtemp: currentWeather.data?.daily.temperature_2m_min[0] ?? 0,
       }}
-      weatherSituation="cloudy"
+      weatherSituation={
+       weatherCodeMapping[
+        currentWeather.data?.current.weather_code as WeatherCodeType
+       ]?.label
+      }
      />
     </CardContainer>
 
