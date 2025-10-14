@@ -1,18 +1,18 @@
 import type { WeatherDataType } from "../hooks/useWeatherData";
 
-type MonthlyAverage = {
+export interface MonthlyAverage {
  monthName: string;
  averageTemp: number;
-};
+}
 
-export const getMonthlyAverageTemps = (
- weatherData: WeatherDataType
-): MonthlyAverage[] => {
+export const getMonthlyAverageTemps = ({
+ daily: { temperature_2m_mean, time },
+}: WeatherDataType): MonthlyAverage[] => {
  const monthlyMapping = new Map<number, number[]>();
 
- weatherData.data.time.forEach((timeData, index) => {
+ time.forEach((timeData, index) => {
   const monthName = new Date(timeData).getMonth();
-  const temperature = weatherData.data.temperature_2m_mean[index];
+  const temperature = temperature_2m_mean[index];
 
   if (!monthlyMapping.has(monthName)) monthlyMapping.set(monthName, []);
   monthlyMapping.get(monthName)?.push(temperature);
