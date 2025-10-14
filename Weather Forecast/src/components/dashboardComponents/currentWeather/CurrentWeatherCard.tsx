@@ -23,27 +23,25 @@ const CurrentWeatherCard = ({
   weatherSituation,
 }: Props) => {
   return (
-    <CardContainer>
-      <div className="flex flex-row justify-between w-full h-full ">
-        <div className="flex flex-col gap-2">
-          <LocationChip cityName={cityName} />
-          <CurrentDate />
-          <CurrentTempratureStatus
-            currentTemp={tempraure.currentTemp}
-            highTemp={tempraure.highTemp}
-            lowTemp={tempraure.lowtemp}
-          />
-        </div>
-
-        <div className="w-fit pe-9">
-          <CurrentWeatherSituaion
-            weatherCode={weatherCode}
-            feelsLike={tempraure.feelsLikeTemp}
-            weatherSituation={weatherSituation}
-          />
-        </div>
+    <div className="flex flex-row justify-between w-full h-full ">
+      <div className="flex flex-col gap-2">
+        <LocationChip cityName={cityName} />
+        <CurrentDate />
+        <CurrentTempratureStatus
+          currentTemp={tempraure.currentTemp}
+          highTemp={tempraure.highTemp}
+          lowTemp={tempraure.lowtemp}
+        />
       </div>
-    </CardContainer>
+
+      <div className="w-fit pe-9">
+        <CurrentWeatherSituaion
+          weatherCode={weatherCode}
+          feelsLike={tempraure.feelsLikeTemp}
+          weatherSituation={weatherSituation}
+        />
+      </div>
+    </div>
   );
 };
 
