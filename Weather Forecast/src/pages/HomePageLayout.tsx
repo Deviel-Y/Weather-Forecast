@@ -4,15 +4,24 @@ import MonthlyTemperatureChart from "../components/dashboardComponents/monthlyAv
 import Navbar from "../components/navbarComponents/Navbar";
 import useCurrentWeather from "../hooks/useWeatherData";
 import useCityQueryStore from "../store";
+import { getMonthlyAverageTemps } from "../utils/getMonthlyAverageTemps";
 
 const HomePageLayout = () => {
  const { latitude, longitude, name } = useCityQueryStore(
   (state) => state.cityAttrebutes
  );
- const { currentWeather } = useCurrentWeather({ latitude, longitude });
+
+ const { currentWeather, monthlyWeather } = useCurrentWeather({
+  latitude,
+  longitude,
+ });
+
+ const monthlyAverageChartData = getMonthlyAverageTemps(
+  monthlyWeather?.data ?? { daily: { temperature_2m_mean: [], time: [] } }
+ );
 
  return (
-  <div className="h-screen w-full flex flex-col gap-7 ">
+  <div className="h-screen w-full flex flex-col gap-7">
    <Navbar />
 
    <div className="grid grid-cols-12 w-full gap-10">
@@ -31,9 +40,11 @@ const HomePageLayout = () => {
     </CardContainer>
 
     <CardContainer additionalStyles="flex flex-col col-span-7">
-     <p className="font-bold text-lg font-sans">Average Monthly Temprature</p>
+     <p className="font-bold text-lg font-sans text-[#1B2767]">
+      Average Monthly Temprature
+     </p>
 
-     <MonthlyTemperatureChart data={[]} />
+     <MonthlyTemperatureChart data={monthlyAverageChartData} />
     </CardContainer>
    </div>
   </div>

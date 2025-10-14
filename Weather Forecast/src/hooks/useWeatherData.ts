@@ -20,17 +20,17 @@ export interface CurrentWeatherResponseType {
 }
 
 export interface WeatherDataType {
- data: {
+ daily: {
   time: string[];
   temperature_2m_mean: number[];
  };
 }
 
 const useCurrentWeather = ({ latitude, longitude }: GetWeatherParams) => {
- const [currentWeather, monthlyWeather] = useQueries({
+ const result = useQueries({
   queries: [
    {
-    queryKey: [latitude, longitude],
+    queryKey: [latitude, longitude, "current"],
     queryFn: () => {
      const apiClient = new APIClientCurrentData<CurrentWeatherResponseType>(
       latitude!,
@@ -39,10 +39,12 @@ const useCurrentWeather = ({ latitude, longitude }: GetWeatherParams) => {
 
      return apiClient.getCurrentData();
     },
+
     enabled: latitude !== null && longitude !== null,
    },
+
    {
-    queryKey: [latitude, longitude],
+    queryKey: [latitude, longitude, "monthly"],
     queryFn: () => {
      const apiClient = new APIClientMonthlyData<WeatherDataType>(
       latitude!,
@@ -51,9 +53,13 @@ const useCurrentWeather = ({ latitude, longitude }: GetWeatherParams) => {
 
      return apiClient.getMonthlyData();
     },
+
+    enabled: latitude !== null && longitude !== null,
    },
   ],
  });
+
+ const [currentWeather, monthlyWeather] = result;
 
  return {
   currentWeather,
