@@ -1,6 +1,7 @@
 import { useQueries } from "@tanstack/react-query";
 import APIClientCurrentData from "../service/api-client-currentData";
-import APIClientMonthlyData from "../service/api-client-monthlyData";
+import APIClientMonthlyData from "../service/api-client-periodData";
+import { getCurrentDate } from "../utils/getCurrentDate";
 
 interface GetWeatherParams {
  latitude: number | null;
@@ -46,9 +47,13 @@ const useCurrentWeather = ({ latitude, longitude }: GetWeatherParams) => {
    {
     queryKey: [latitude, longitude, "monthly"],
     queryFn: () => {
+     const { dateInDashFormat, currentYear } = getCurrentDate();
+
      const apiClient = new APIClientMonthlyData<WeatherDataType>(
       latitude!,
-      longitude!
+      longitude!,
+      `${currentYear}-01-01`,
+      dateInDashFormat
      );
 
      return apiClient.getMonthlyData();
