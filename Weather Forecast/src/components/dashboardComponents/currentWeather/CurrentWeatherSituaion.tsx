@@ -1,8 +1,8 @@
-import clearWeatherFigure from "../../assets/Clear.png";
-import rainCloudFigure from "../../assets/Rain_cloud.png";
-import snowFigure from "../../assets/Snow.png";
-import fogFigure from "../../assets/fog.png";
-import partlyCloudFigure from "../../assets/partly_cloud.png";
+import clearWeatherFigure from "../../../assets/Clear.png";
+import rainCloudFigure from "../../../assets/Rain_cloud.png";
+import snowFigure from "../../../assets/Snow.png";
+import fogFigure from "../../../assets/fog.png";
+import partlyCloudFigure from "../../../assets/partly_cloud.png";
 
 interface Props {
   weatherCode: number;

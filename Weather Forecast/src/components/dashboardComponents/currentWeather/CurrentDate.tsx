@@ -1,4 +1,4 @@
-import { getCurrentDate } from "../../utils/getCurrentDate";
+import { getCurrentDate } from "../../../utils/getCurrentDate";
 
 const CurrentDate = () => {
   const { date, time, weekday } = getCurrentDate();

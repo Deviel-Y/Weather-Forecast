@@ -1,5 +1,5 @@
 import Navbar from "../components/navbarComponents/Navbar";
-import CurrentWeatherCard from "../components/dashboardComponents/CurrentWeatherCard";
+import CurrentWeatherCard from "../components/dashboardComponents/currentWeather/CurrentWeatherCard";
 import useCurrentWeather from "../hooks/useCurrentWeather";
 import useCityQueryStore from "../store";
 
