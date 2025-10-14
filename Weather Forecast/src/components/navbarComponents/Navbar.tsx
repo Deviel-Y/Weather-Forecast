@@ -19,6 +19,7 @@ const Navbar = () => {
    <div className="flex flex-row items-center gap-2">
     <Autocomplete
      disablePortal
+     defaultValue={cityList[0]}
      getOptionLabel={(option) => option.cityName}
      options={cityList}
      onChange={(_event, newValue) => {
