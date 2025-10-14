@@ -58,7 +58,7 @@ type WeatherCodeType = //These numbers are from https://open-meteo.com/en/docs
     | 75;
 
 const weatherCodeMapping: Record<WeatherCodeType, { figure: string }> = {
-  //Map each wather code to a related figure
+  //Map each weather code to a related figure
   0: { figure: clearWeatherFigure },
   1: { figure: clearWeatherFigure },
   2: { figure: partlyCloudFigure },
