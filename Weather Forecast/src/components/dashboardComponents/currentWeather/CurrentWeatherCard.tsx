@@ -1,4 +1,3 @@
-import CardContainer from "../../CardContainer";
 import CurrentDate from "./CurrentDate";
 import CurrentTempratureStatus from "./CurrentTempratureStatus";
 import CurrentWeatherSituaion from "./CurrentWeatherSituaion";

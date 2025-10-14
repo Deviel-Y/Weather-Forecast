@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const axiosInstance = axios.create({
   baseURL: "https://api.open-meteo.com/v1",
   params: {
@@ -11,7 +12,7 @@ const axiosInstance = axios.create({
   },
 });
 
-class APIClient<T> {
+class APIClientCurrentData<T> {
   private latitude: number;
   private longitude: number;
 
@@ -20,7 +21,7 @@ class APIClient<T> {
     this.longitude = longitude;
   }
 
-  get = async () => {
+  getCurrentData = async () => {
     const response = await axiosInstance.get<T>("/forecast", {
       params: { latitude: this.latitude, longitude: this.longitude },
     });
@@ -29,4 +30,4 @@ class APIClient<T> {
   };
 }
 
-export default APIClient;
+export default APIClientCurrentData;

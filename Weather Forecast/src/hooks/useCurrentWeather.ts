@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import APIClient from "../service/api-client";
+import APIClientCurrentData from "../service/api-client-currentData";
 
 interface GetWeatherParams {
   latitude: number | null;
@@ -22,12 +22,12 @@ const useCurrentWeather = ({ latitude, longitude }: GetWeatherParams) => {
   return useQuery({
     queryKey: [latitude, longitude],
     queryFn: () => {
-      const apiClient = new APIClient<CurrentWeatherResponseType>(
+      const apiClient = new APIClientCurrentData<CurrentWeatherResponseType>(
         latitude!,
         longitude!
       );
 
-      return apiClient.get();
+      return apiClient.getCurrentData();
     },
 
     enabled: latitude !== null && longitude !== null,
