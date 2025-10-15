@@ -66,8 +66,6 @@ const HomePage = () => {
   requestAnimationFrame(updateDragWidth);
  }, [weeklyWeatherData]);
 
- console.log(weeklyWeatherData);
-
  const monthlyAverageChartData = getMonthlyAverageTemps(
   monthlyWeather?.data ?? { daily: { temperature_2m_mean: [], time: [] } }
  );
@@ -76,9 +74,9 @@ const HomePage = () => {
   <div className="h-screen w-full flex flex-col">
    <Navbar />
 
-   <div className="px-6 py-7 flex flex-col gap-6">
-    <div className="grid grid-cols-12 w-full gap-10">
-     <CardContainer additionalStyles="flex flex-1 items-center justify-center col-span-5 px-6 pt-5 pb-[17px] shadow-[0_4px_10px_0_rgba(0,0,0,0.15)]">
+   <div className="px-6 py-7 max-sm:p-3 flex flex-col gap-6 max-sm:gap-3">
+    <div className="grid grid-cols-12 max-[769px]:flex max-[769px]:flex-col w-full gap-10 max-sm:gap-3">
+     <CardContainer additionalStyles="flex flex-1 items-center justify-center col-span-5 px-6 pt-5 pb-[17px] max-md:p-5 shadow-[0_4px_10px_0_rgba(0,0,0,0.15)]">
       <CurrentWeatherCard
        cityName={name}
        weatherFigure={
@@ -100,20 +98,20 @@ const HomePage = () => {
       />
      </CardContainer>
 
-     <CardContainer additionalStyles="flex flex-col gap-1 col-span-7 p-4">
+     <CardContainer additionalStyles="flex flex-col gap-1 col-span-7 p-4 max-sm:p-5">
       <p className="font-bold text-lg font-sans text-[#1B2767]">
        Average Monthly Temprature
       </p>
 
       <Suspense fallback={<p>Loading Chart...</p>}>
-       <div className="w-full ps-8">
+       <div className="w-full ps-8 max-sm:p-1">
         <MonthlyTemperatureChart data={monthlyAverageChartData} />
        </div>
       </Suspense>
      </CardContainer>
     </div>
 
-    <CardContainer additionalStyles="flex overflow-hidden select-none no-scrollbar flex-col px-[28px] pb-[26px] pt-[30px] gap-5 items-center justify-center">
+    <CardContainer additionalStyles="flex overflow-hidden select-none no-scrollbar flex-col px-[28px] pb-[26px] pt-[30px] max-sm:p-5 gap-5 items-center justify-center">
      <p className="font-bold font-sans self-start text-[#1B2767] text-2xl">
       2 weeks Forecast
      </p>

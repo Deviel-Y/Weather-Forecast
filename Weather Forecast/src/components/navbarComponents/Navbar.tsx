@@ -16,7 +16,7 @@ const Navbar = () => {
     <p className="font-[400] text-[12px] text-[#003464]">Weather Dashboard</p>
    </div>
 
-   <div className="flex flex-row items-center gap-2">
+   <div className="flex flex-row items-center gap-2 w6">
     <Autocomplete
      disablePortal
      defaultValue={cityList[0]}
@@ -30,10 +30,13 @@ const Navbar = () => {
         newValue.cityName
        );
      }}
-     sx={{ width: 300 }}
      size="small"
      renderInput={(params) => (
-      <TextField {...params} label="Search Your Location" />
+      <TextField
+       className="!w-64 max-sm:!w-40"
+       {...params}
+       label="Search Your Location"
+      />
      )}
     />
 
