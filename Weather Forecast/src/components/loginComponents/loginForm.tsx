@@ -22,8 +22,8 @@ const LoginForm = () => {
  });
 
  return (
-  <div className="flex flex-row w-[960px] h-[560px] bg-white rounded-xl shadow-[0_4px_8px_0_rgba(0,0,0,0.25)]">
-   <div className=" flex flex-col items-center flex-1 w-[506px]">
+  <div className="flex flex-row w-[960px] max-md:w-full h-[560px] max-md:h-fit bg-white rounded-xl shadow-[0_4px_8px_0_rgba(0,0,0,0.25)]">
+   <div className=" flex flex-col items-center flex-1 w-[506px] max-md:w-full">
     {/* Login Form Side Container */}
     <form
      noValidate
@@ -35,7 +35,7 @@ const LoginForm = () => {
        navigate("/");
       }, 3000);
      })}
-     className="flex flex-col items-center justify-between px-[60px] w-full h-full py-28"
+     className="flex flex-col max-md:gap-32 items-center justify-between px-[60px] w-full h-full py-28 max-md:py-10"
     >
      <div className=" w-full gap-8 flex flex-col items-center">
       <h1 className="font-bold text-2xl">Login</h1>
@@ -61,7 +61,7 @@ const LoginForm = () => {
     </form>
    </div>
 
-   <div className="flex justify-center items-center flex-1 bg-[#D3E1E7]">
+   <div className="flex justify-center items-center flex-1 bg-[#D3E1E7] max-md:hidden">
     <div className="flex flex-col pr-11 pl-9 pt-14 pb-[60px]">
      <img className="scale-110" src={loginPagePicture} alt="loginPagePicture" />
     </div>
