@@ -2,74 +2,89 @@ import { useQueries } from "@tanstack/react-query";
 import APIClientCurrentData from "../service/api-client-currentData";
 import APIClientMonthlyData from "../service/api-client-periodData";
 import { getCurrentDate } from "../utils/getCurrentDate";
+import APIClientWeeklyData from "../service/api-client-WeeklyData";
 
 interface GetWeatherParams {
- latitude: number | null;
- longitude: number | null;
+  latitude: number | null;
+  longitude: number | null;
 }
 
 export interface CurrentWeatherResponseType {
- current: {
-  temperature_2m: number;
-  apparent_temperature: number;
-  weather_code: number;
- };
- daily: {
-  temperature_2m_max: [number];
-  temperature_2m_min: [number];
- };
+  current: {
+    temperature_2m: number;
+    apparent_temperature: number;
+    weather_code: number;
+  };
+  daily: {
+    temperature_2m_max: [number];
+    temperature_2m_min: [number];
+  };
 }
 
 export interface WeatherDataType {
- daily: {
-  time: string[];
-  temperature_2m_mean: number[];
- };
+  daily: {
+    time: string[];
+    temperature_2m_mean: number[];
+  };
 }
 
 const useCurrentWeather = ({ latitude, longitude }: GetWeatherParams) => {
- const result = useQueries({
-  queries: [
-   {
-    queryKey: [latitude, longitude, "current"],
-    queryFn: () => {
-     const apiClient = new APIClientCurrentData<CurrentWeatherResponseType>(
-      latitude!,
-      longitude!
-     );
+  const [currentWeather, monthlyWeather, weeklyWeather] = useQueries({
+    queries: [
+      {
+        queryKey: [latitude, longitude, "current"],
+        queryFn: () => {
+          const apiClient =
+            new APIClientCurrentData<CurrentWeatherResponseType>(
+              latitude!,
+              longitude!
+            );
 
-     return apiClient.getCurrentData();
-    },
+          return apiClient.getCurrentData();
+        },
 
-    enabled: latitude !== null && longitude !== null,
-   },
+        enabled: latitude !== null && longitude !== null,
+      },
 
-   {
-    queryKey: [latitude, longitude, "monthly"],
-    queryFn: () => {
-     const { dateInDashFormat, currentYear } = getCurrentDate();
+      {
+        queryKey: [latitude, longitude, "monthly"],
+        queryFn: () => {
+          const { dateInDashFormat, currentYear } = getCurrentDate();
 
-     const apiClient = new APIClientMonthlyData<WeatherDataType>(
-      latitude!,
-      longitude!,
-      `${currentYear}-01-01`,
-      dateInDashFormat
-     );
+          const apiClient = new APIClientMonthlyData<WeatherDataType>(
+            latitude!,
+            longitude!,
+            `${currentYear}-01-01`,
+            dateInDashFormat
+          );
 
-     return apiClient.getMonthlyData();
-    },
+          return apiClient.getMonthlyData();
+        },
 
-    enabled: latitude !== null && longitude !== null,
-   },
-  ],
- });
+        enabled: latitude !== null && longitude !== null,
+      },
 
- const [currentWeather, monthlyWeather] = result;
+      {
+        queryKey: [latitude, longitude, "monthly"],
+        queryFn: () => {
+          const apiClient = new APIClientWeeklyData<WeatherDataType>(
+            latitude!,
+            longitude!
+          );
 
- return {
-  currentWeather,
-  monthlyWeather,
- };
+          return apiClient.getWeeklyData();
+        },
+
+        enabled: latitude !== null && longitude !== null,
+      },
+    ],
+  });
+
+  return {
+    currentWeather,
+    monthlyWeather,
+    weeklyWeather,
+  };
 };
 
 export default useCurrentWeather;
