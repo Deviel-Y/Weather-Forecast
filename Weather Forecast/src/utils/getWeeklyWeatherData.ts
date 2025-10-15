@@ -1,7 +1,7 @@
 import { addDays } from "date-fns";
 import type { WeeklyDataType } from "../hooks/useWeatherData";
 
-type WeeklyDataOutput = {
+export type WeeklyDataOutput = {
  weatherCode: number;
  averageTemp: number;
  date: string;

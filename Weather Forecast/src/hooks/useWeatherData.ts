@@ -2,12 +2,8 @@ import { useQueries } from "@tanstack/react-query";
 import APIClientCurrentData from "../service/api-client-currentData";
 import APIClientMonthlyData from "../service/api-client-periodData";
 import APIClientWeeklyData from "../service/api-client-WeeklyData";
+import useWeatherQuery from "../store";
 import { getCurrentDate } from "../utils/getCurrentDate";
-
-interface GetWeatherParams {
- latitude: number | null;
- longitude: number | null;
-}
 
 export interface CurrentWeatherResponseType {
  current: {
@@ -40,7 +36,11 @@ export interface WeeklyDataType {
  };
 }
 
-const useCurrentWeather = ({ latitude, longitude }: GetWeatherParams) => {
+const useCurrentWeather = () => {
+ const { latitude, longitude, name } = useWeatherQuery(
+  (state) => state.cityAttrebutes
+ );
+
  const [currentWeather, monthlyWeather, weeklyWeather] = useQueries({
   queries: [
    {
@@ -92,7 +92,7 @@ const useCurrentWeather = ({ latitude, longitude }: GetWeatherParams) => {
  });
 
  return {
-  currentWeather,
+  currentWeather: { cityName: name, ...currentWeather },
   monthlyWeather,
   weeklyWeather,
  };
