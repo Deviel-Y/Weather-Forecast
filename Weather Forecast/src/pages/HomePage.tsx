@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import CardContainer from "../components/CardContainer";
 import CurrentWeatherCard from "../components/dashboardComponents/currentWeather/CurrentWeatherCard";
 import Navbar from "../components/navbarComponents/Navbar";
@@ -10,6 +10,7 @@ import {
   type WeatherCodeType,
 } from "../utils/weatherCodeMapping";
 import SingleWeatherCard from "../components/dashboardComponents/weeklyWeatcher/SingleWeatherCard.tsx";
+import { motion } from "motion/react";
 
 const HomePage = () => {
   const MonthlyTemperatureChart = lazy(
@@ -18,6 +19,19 @@ const HomePage = () => {
         "../components/dashboardComponents/monthlyAverageChart/MonthlyAverageWheatherDataChart.tsx"
       )
   );
+
+  const constraintsRef = useRef<HTMLDivElement>(null);
+  const [dragWidth, setDragWidth] = useState(0);
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      const scrollWidth = scrollRef.current.scrollWidth;
+      const offsetWidth = scrollRef.current.offsetWidth;
+      setDragWidth(scrollWidth - offsetWidth);
+    }
+  }, []);
 
   const { latitude, longitude, name } = useCityQueryStore(
     (state) => state.cityAttrebutes
@@ -74,34 +88,39 @@ const HomePage = () => {
           </CardContainer>
         </div>
 
-        <CardContainer additionalStyles="flex flex-col px-[28px] pb-[26px] pt-[30px] gap-5 items-center justify-center">
+        <CardContainer additionalStyles="flex overflow-hidden select-none no-scrollbar flex-col px-[28px] pb-[26px] pt-[30px] gap-5 items-center justify-center">
           <p className="font-bold font-sans self-start text-[#1B2767] text-2xl">
             2 weeks Forecast
           </p>
 
-          <div
-            className="
-              flex flex-row gap-[18px]
-              overflow-scroll no-scrollbar
+          <motion.div className="w-full overflow-hidden" ref={constraintsRef}>
+            <motion.div
+              ref={scrollRef}
+              drag="x"
+              dragConstraints={{ left: -dragWidth, right: 0 }}
+              dragElastic={0.2}
+              className="
+              flex flex-row justify-start gap-[18px]
               w-full snap-x snap-mandatory
               cursor-grab active:cursor-grabbing select-none
             "
-          >
-            {[...Array(14)].map((_, index) => (
-              <div key={index} className="snap-start shrink-0">
-                <SingleWeatherCard
-                  date={index.toString()}
-                  figure={
-                    weatherCodeMapping[
-                      currentWeather.data?.current
-                        .weather_code as WeatherCodeType
-                    ]?.figure
-                  }
-                  temperature={20}
-                />
-              </div>
-            ))}
-          </div>
+            >
+              {[...Array(14)].map((_, index) => (
+                <div key={index} className="snap-start shrink-0">
+                  <SingleWeatherCard
+                    date={index.toString()}
+                    figure={
+                      weatherCodeMapping[
+                        currentWeather.data?.current
+                          .weather_code as WeatherCodeType
+                      ]?.figure
+                    }
+                    temperature={20}
+                  />
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
         </CardContainer>
       </div>
     </div>
