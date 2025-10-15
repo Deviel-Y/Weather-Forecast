@@ -11,6 +11,7 @@ import {
 } from "../utils/weatherCodeMapping";
 import SingleWeatherCard from "../components/dashboardComponents/weeklyWeatcher/SingleWeatherCard.tsx";
 import { motion } from "motion/react";
+import cityList from "../data/cityList.json";
 
 const HomePage = () => {
   const MonthlyTemperatureChart = lazy(
@@ -31,10 +32,19 @@ const HomePage = () => {
       const offsetWidth = scrollRef.current.offsetWidth;
       setDragWidth(scrollWidth - offsetWidth);
     }
+
+    setCityAttrebutes(
+      cityList[0].latitude,
+      cityList[0].longitude,
+      cityList[0].cityName
+    );
   }, []);
 
   const { latitude, longitude, name } = useCityQueryStore(
     (state) => state.cityAttrebutes
+  );
+  const setCityAttrebutes = useCityQueryStore(
+    (state) => state.setCityAttrebutes
   );
 
   const { currentWeather, monthlyWeather } = useCurrentWeather({

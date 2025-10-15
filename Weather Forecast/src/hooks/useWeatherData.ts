@@ -43,7 +43,7 @@ const useCurrentWeather = ({ latitude, longitude }: GetWeatherParams) => {
           return apiClient.getCurrentData();
         },
 
-        enabled: latitude !== null && longitude !== null,
+        enabled: !!latitude && !!longitude,
       },
 
       {
@@ -61,11 +61,11 @@ const useCurrentWeather = ({ latitude, longitude }: GetWeatherParams) => {
           return apiClient.getMonthlyData();
         },
 
-        enabled: latitude !== null && longitude !== null,
+        enabled: !!latitude && !!longitude,
       },
 
       {
-        queryKey: [latitude, longitude, "monthly"],
+        queryKey: [latitude, longitude, "weekly"],
         queryFn: () => {
           const apiClient = new APIClientWeeklyData<WeatherDataType>(
             latitude!,
@@ -75,7 +75,7 @@ const useCurrentWeather = ({ latitude, longitude }: GetWeatherParams) => {
           return apiClient.getWeeklyData();
         },
 
-        enabled: latitude !== null && longitude !== null,
+        enabled: !!latitude && !!longitude,
       },
     ],
   });
