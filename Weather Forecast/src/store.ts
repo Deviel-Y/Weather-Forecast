@@ -10,10 +10,10 @@ interface CityStore {
  setCityAttrebutes: (latitude: number, longitude: number, name: string) => void;
 }
 
-const useUserQuery = create<CityStore>((set) => ({
+const useWeatherQuery = create<CityStore>((set) => ({
  cityAttrebutes: { latitude: 0, longitude: 0, name: "" },
  setCityAttrebutes: (latitude, longitude, name) =>
   set(() => ({ cityAttrebutes: { latitude, longitude, name } })),
 }));
 
-export default useUserQuery;
+export default useWeatherQuery;
