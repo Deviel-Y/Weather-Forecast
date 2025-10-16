@@ -1,21 +1,22 @@
-import { lazy, useEffect } from "react";
+import { useEffect } from "react";
 import CurrentWeatherCard from "../components/dashboardComponents/currentWeather/CurrentWeatherCard";
+import MonthlyTemperatureChart from "../components/dashboardComponents/monthlyAverageChart/MonthlyAverageWheatherDataChart.tsx";
 import TwoWeekWeatherData from "../components/dashboardComponents/weeklyWeatcher/TwoWeekWeatherData.tsx";
 import Navbar from "../components/navbarComponents/Navbar";
 import cityList from "../data/cityList.json";
 import useCurrentWeather from "../hooks/useWeatherData";
-import useCityQueryStore from "../store";
+import useCityQueryStore from "../useWeatherinfoStore.ts";
 import { getCurrentWeatherProps } from "../utils/getCurrentWeatherProps.ts";
 import { getMonthlyAverageTemps } from "../utils/getMonthlyAverageTemps";
 import { getWeeklyWeatherData } from "../utils/getWeeklyWeatherData.ts";
 
 const HomePage = () => {
- const MonthlyTemperatureChart = lazy(
-  () =>
-   import(
-    "../components/dashboardComponents/monthlyAverageChart/MonthlyAverageWheatherDataChart.tsx"
-   )
- );
+ // const MonthlyTemperatureChart = lazy(
+ //  () =>
+ //   import(
+ //    "../components/dashboardComponents/monthlyAverageChart/MonthlyAverageWheatherDataChart.tsx"
+ //   ),
+ // );
 
  const { currentWeather, monthlyWeather, weeklyWeather } = useCurrentWeather();
  const { currentWeatherTemperatureData, weatherFigure, weatherLabel } =

@@ -2,8 +2,7 @@ import { useQueries } from "@tanstack/react-query";
 import APIClientCurrentData from "../service/api-client-currentData";
 import APIClientMonthlyData from "../service/api-client-periodData";
 import APIClientWeeklyData from "../service/api-client-WeeklyData";
-import useWeatherQuery from "../store";
-import { getCurrentDate } from "../utils/getCurrentDate";
+import useWeatherinfoStore from "../useWeatherinfoStore";
 
 export interface CurrentWeatherResponseType {
  current: {
@@ -37,7 +36,8 @@ export interface WeeklyDataType {
 }
 
 const useCurrentWeather = () => {
- const { latitude, longitude, name } = useWeatherQuery(
+ const now = new Date();
+ const { latitude, longitude, name } = useWeatherinfoStore(
   (state) => state.cityAttrebutes
  );
 
@@ -60,13 +60,11 @@ const useCurrentWeather = () => {
    {
     queryKey: [latitude, longitude, "monthly"],
     queryFn: () => {
-     const { dateInDashFormat, currentYear } = getCurrentDate();
-
      const apiClient = new APIClientMonthlyData<WeatherDataType>(
       latitude!,
       longitude!,
-      `${currentYear}-01-01`,
-      dateInDashFormat
+      `${now.getFullYear()}-01-01`,
+      `${now.getFullYear}-${now.getMonth()}-${now.getDate()}`
      );
 
      return apiClient.getMonthlyData();
