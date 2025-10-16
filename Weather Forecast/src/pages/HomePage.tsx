@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import CurrentWeatherCard from "../components/dashboardComponents/currentWeather/CurrentWeatherCard";
 import MonthlyTemperatureChart from "../components/dashboardComponents/monthlyAverageChart/MonthlyAverageWheatherDataChart.tsx";
 import TwoWeekWeatherData from "../components/dashboardComponents/weeklyWeatcher/TwoWeekWeatherData.tsx";
-import Navbar from "../components/navbarComponents/Navbar";
 import cityList from "../data/cityList.json";
 import useCurrentWeather from "../hooks/useWeatherData";
 import useLanguageStore from "../useLanguageStore.ts";
@@ -48,8 +47,6 @@ const HomePage = () => {
 
  return (
   <div dir={currentDir} className="h-screen w-full flex flex-col">
-   <Navbar />
-
    <div className="px-6 py-7 max-sm:p-3 flex flex-col gap-6 max-sm:gap-3">
     <div className="grid grid-cols-12 max-[769px]:flex max-[769px]:flex-col w-full gap-10 max-sm:gap-3">
      <CurrentWeatherCard
