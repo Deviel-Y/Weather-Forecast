@@ -1,10 +1,12 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import CurrentWeatherCard from "../components/dashboardComponents/currentWeather/CurrentWeatherCard";
 import MonthlyTemperatureChart from "../components/dashboardComponents/monthlyAverageChart/MonthlyAverageWheatherDataChart.tsx";
 import TwoWeekWeatherData from "../components/dashboardComponents/weeklyWeatcher/TwoWeekWeatherData.tsx";
 import Navbar from "../components/navbarComponents/Navbar";
 import cityList from "../data/cityList.json";
 import useCurrentWeather from "../hooks/useWeatherData";
+import useLanguageStore from "../useLanguageStore.ts";
 import useCityQueryStore from "../useWeatherinfoStore.ts";
 import { getCurrentWeatherProps } from "../utils/getCurrentWeatherProps.ts";
 import { getMonthlyAverageTemps } from "../utils/getMonthlyAverageTemps";
@@ -17,8 +19,9 @@ const HomePage = () => {
  //    "../components/dashboardComponents/monthlyAverageChart/MonthlyAverageWheatherDataChart.tsx"
  //   ),
  // );
-
+ const { t } = useTranslation();
  const { currentWeather, monthlyWeather, weeklyWeather } = useCurrentWeather();
+ const currentLang = useLanguageStore((s) => s.currentLang);
  const { currentWeatherTemperatureData, weatherFigure, weatherLabel } =
   getCurrentWeatherProps({ currentWeatherData: currentWeather.data! });
 
@@ -40,8 +43,12 @@ const HomePage = () => {
    hourly: { temperature_2m: [], time: [] },
   }
  );
+
+ const translatedMonths = t("months", { returnObjects: true });
  const monthlyAverageChartData = getMonthlyAverageTemps(
-  monthlyWeather?.data ?? { daily: { temperature_2m_mean: [], time: [] } }
+  monthlyWeather?.data ?? { daily: { temperature_2m_mean: [], time: [] } },
+  translatedMonths as Array<string>,
+  currentLang
  );
 
  return (

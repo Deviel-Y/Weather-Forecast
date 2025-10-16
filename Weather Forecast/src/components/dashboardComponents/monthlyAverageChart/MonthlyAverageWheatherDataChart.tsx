@@ -1,4 +1,5 @@
 import { LineChart } from "@mui/x-charts/LineChart";
+import { useTranslation } from "react-i18next";
 import type { MonthlyAverage } from "../../../utils/getMonthlyAverageTemps";
 import CardContainer from "../../CardContainer";
 
@@ -10,11 +11,13 @@ function MonthlyTemperatureChart({ data }: Props) {
  const temps = data.map((data) => data.averageTemp);
  const months = data.map((data) => data.monthName);
 
+ const { t } = useTranslation();
+
  return (
   <CardContainer additionalStyles="flex flex-col gap-1 col-span-7 p-4 max-sm:p-5 w-full ps-8 max-sm:p-1">
    <div className="w-full bg-transparent h-full">
     <p className="font-bold text-lg font-sans text-[#1B2767]">
-     Average Monthly Temprature
+     {t("averageMonthlyTemp")}
     </p>
 
     <svg width="0" height="0">
