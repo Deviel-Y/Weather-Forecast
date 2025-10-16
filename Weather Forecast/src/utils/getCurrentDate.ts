@@ -1,25 +1,48 @@
+import moment from "moment-jalaali";
+
+moment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
+
 export const getCurrentDate = () => {
- const now = new Date();
+ const date = new Date();
 
- const weekday = now.toLocaleString("en-US", {
-  weekday: "long",
- });
-
- const time = now.toLocaleString("en-US", {
+ // --- Gregorian (short) ---
+ const gregoryDay = date.getDate();
+ const gregoryWeekday = date.toLocaleDateString("en-US", { weekday: "long" });
+ const gregoryMonth = date.toLocaleString("en-US", { month: "short" });
+ const gregoryYear = date.getFullYear();
+ const gregoryTime = date.toLocaleTimeString("en-US", {
   hour: "numeric",
   minute: "2-digit",
   hour12: true,
  });
 
- const date = `${now.getDate()} ${now.toLocaleString("en-US", {
-  month: "short",
- })}, ${now.getFullYear()}`;
+ // --- Jalali ---
+ const jNow = moment(date);
+ const jalaliWeekday = jNow.format("dddd"); // شنبه, یک‌شنبه ...
+ const jalaliDay = jNow.format("D"); // day of month
+ const jalaliMonth = jNow.format("jMMM"); // دی, بهمن ...
+ const jalaliYear = jNow.format("jYYYY"); // 1402
 
- const dateInDashFormat = `${now.getFullYear()}-${
-  now.getMonth() + 1
- }-${now.getDate()}`;
+ // 12-hour time for Jalali (using moment)
+ const jalaliTime = jNow.format("hh:mm");
+ const jalaliMeridiem = jNow.format("A") === "AM" ? "صبح" : "عصر";
+ const jalaliTimeWithMeridiem = `${jalaliTime} ${jalaliMeridiem}`;
 
- const currentYear = now.getFullYear();
-
- return { weekday, time, date, dateInDashFormat, currentYear };
+ return {
+  gregorian: {
+   dayOfTheMonth: gregoryDay,
+   month: gregoryMonth,
+   year: gregoryYear,
+   weekday: gregoryWeekday,
+   time: gregoryTime,
+  },
+  jalali: {
+   weekday: jalaliWeekday,
+   day: jalaliDay,
+   month: jalaliMonth,
+   year: jalaliYear,
+   time: jalaliTime,
+   jalaliTimeWithMeridiem,
+  },
+ };
 };
