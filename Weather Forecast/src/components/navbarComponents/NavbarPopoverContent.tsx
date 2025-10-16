@@ -45,7 +45,7 @@ const NavbarPopoverContent = () => {
        onClick={() => {
         i18n.changeLanguage("en");
         localStorage.setItem("lang", "en");
-
+        document.documentElement.dir = "ltr";
         setCurrentLangStore("en");
        }}
        className={`${
@@ -59,6 +59,7 @@ const NavbarPopoverContent = () => {
        onClick={() => {
         i18n.changeLanguage("fa");
         localStorage.setItem("lang", "fa");
+        document.documentElement.dir = "rtl";
         setCurrentLangStore("fa");
        }}
        className={`${

@@ -14,7 +14,7 @@ const CurrentDate = () => {
     {currentLang === "en" ? gregorian.weekday : jalali.weekday}
    </p>
 
-   <div className="flex flex-row gap-x-5 font-sans text-sm">
+   <div className="flex flex-row rtl:flex-row-reverse gap-x-5 font-sans text-sm">
     <p>{currentLang === "en" ? gregorianDateFormat : jalaliDateFormat}</p>
 
     <p>
