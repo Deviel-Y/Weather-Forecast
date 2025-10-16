@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import loginPagePicture from "../../assets/loginPagePicture.png";
 import {
@@ -12,7 +13,7 @@ import {
 const LoginForm = () => {
  const navigate = useNavigate();
  const [isLoading, setIsLoading] = useState<boolean>(false);
-
+ const { t } = useTranslation();
  const {
   register,
   handleSubmit,
@@ -38,13 +39,14 @@ const LoginForm = () => {
      className="flex flex-col max-md:gap-32 items-center justify-between px-[60px] w-full h-full py-28 max-md:py-10"
     >
      <div className=" w-full gap-8 flex flex-col items-center">
-      <h1 className="font-bold text-2xl">Login</h1>
+      <h1 className="font-bold text-2xl">{t("loginTitle")}</h1>
+
       <TextField
        error={!!errors.name?.message}
        {...register("name")}
        className="w-full"
        required
-       placeholder="Enter Your Name"
+       placeholder={t("loginInputLabel")}
        helperText={errors.name?.message}
       />
      </div>
@@ -56,7 +58,7 @@ const LoginForm = () => {
       loading={isLoading}
       variant="contained"
      >
-      Login
+      {t("loginSubmitButton")}
      </Button>
     </form>
    </div>
