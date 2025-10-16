@@ -5,7 +5,7 @@ const CurrentDate = () => {
  const currentLang = useLanguageStore((s) => s.currentLang);
  const { gregorian, jalali } = getCurrentDate();
 
- const gregorianDateFormat = `${gregorian.dayOfTheMonth} ${gregorian.month}, ${gregorian.year}`;
+ const gregorianDateFormat = `${gregorian.dayOfTheMonth} ${gregorian.gregoryMonthInShort}, ${gregorian.year}`;
  const jalaliDateFormat = `${jalali.weekday} ${jalali.day} ${jalali.month} ${jalali.year}`;
 
  return (
@@ -18,7 +18,9 @@ const CurrentDate = () => {
     <p>{currentLang === "en" ? gregorianDateFormat : jalaliDateFormat}</p>
 
     <p>
-     {currentLang === "en" ? gregorian.time : jalali.jalaliTimeWithMeridiem}
+     {currentLang === "en"
+      ? gregorian.gregoryTimeIn12
+      : jalali.jalaliTimeWithMeridiem}
     </p>
    </div>
   </div>

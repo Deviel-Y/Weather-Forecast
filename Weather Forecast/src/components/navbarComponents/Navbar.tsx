@@ -1,7 +1,7 @@
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { useTranslation } from "react-i18next";
-import logoIcon from "../../assets/logo.png";
+import logoIcon from "../../assets/navbarLogo.png";
 import cityList from "../../data/cityList.json";
 import useCityQueryStore from "../../useWeatherinfoStore";
 import NavbarPopoverContent from "./NavbarPopoverContent";
