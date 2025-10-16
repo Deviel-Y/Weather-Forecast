@@ -13,7 +13,9 @@ import {
 const LoginForm = () => {
  const navigate = useNavigate();
  const [isLoading, setIsLoading] = useState<boolean>(false);
+
  const { t } = useTranslation();
+
  const {
   register,
   handleSubmit,

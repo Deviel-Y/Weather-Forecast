@@ -4,11 +4,11 @@ import { useTranslation } from "react-i18next";
 
 const LanguageSelectDropdown = () => {
  const savedLang = localStorage.getItem("lang");
- const { t, i18n } = useTranslation(); // ✅ use object destructuring — v16 supports it
+ const { t, i18n } = useTranslation();
 
  useEffect(() => {
   i18n.changeLanguage(savedLang as "en" | "fa");
- });
+ }, [savedLang]);
 
  return (
   <FormControl variant="standard" sx={{ m: 1, minWidth: 200 }}>

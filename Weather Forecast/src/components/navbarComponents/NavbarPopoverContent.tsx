@@ -1,61 +1,96 @@
 import { Button, ButtonGroup, Divider } from "@mui/material";
-import { LiaSun } from "react-icons/lia";
+import { default as currentLang } from "i18next";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { HiOutlineMoon } from "react-icons/hi2";
+import { LiaSun } from "react-icons/lia";
 import { RxExit } from "react-icons/rx";
 import { useNavigate } from "react-router";
 
 const NavbarPopoverContent = () => {
-  const navigate = useNavigate();
+ const [language, setLanguage] = useState<"fa" | "en">(
+  currentLang.language as "fa" | "en"
+ );
+ const navigate = useNavigate();
+ const currentLanguageSelected = localStorage.getItem("lang");
+ const { t, i18n } = useTranslation();
 
-  return (
-    <div className="w-56 h-60 rounded-lg px-4 py-3">
-      <div className="flex flex-col items-stretch gap-3 w-full">
-        <div className="flex flex-col items-start gap-1.5">
-          <p className="font-[400]">Mode</p>
+ useEffect(() => {
+  i18n.changeLanguage(currentLanguageSelected as "fa" | "en");
+ }, [currentLanguageSelected]);
 
-          <ButtonGroup variant="outlined" size="small" fullWidth>
-            <Button
-              startIcon={<LiaSun />}
-              className="!border-gray-400 !text-gray-400"
-            >
-              Light
-            </Button>
-            <Button
-              startIcon={<HiOutlineMoon size={15} />}
-              className="!border-gray-400 !text-gray-400"
-            >
-              dark
-            </Button>
-          </ButtonGroup>
-        </div>
+ return (
+  <div className="w-56 h-60 rounded-lg px-4 py-3">
+   <div className="flex flex-col items-stretch gap-3 w-full">
+    <div className="flex flex-col items-start gap-1.5">
+     <p className="font-[400]">{t("navbarPopoverTheme")}</p>
 
-        <Divider className="mt-1" />
-
-        <div className="flex flex-col items-start gap-1.5">
-          <p className="font-[400]">Language</p>
-
-          <ButtonGroup variant="outlined" size="small" fullWidth>
-            <Button className="!border-gray-400 !text-gray-400">EN</Button>
-            <Button className="!border-gray-400 !text-gray-400">Fa</Button>
-          </ButtonGroup>
-        </div>
-
-        <Divider className="mt-1" />
-
-        <Button
-          onClick={() => {
-            localStorage.removeItem("name");
-            navigate("/login");
-          }}
-          variant="text"
-          className="!text-black self-start hover:!bg-transparent !mt-2.5"
-          startIcon={<RxExit size={20} />}
-        >
-          Exit
-        </Button>
-      </div>
+     <ButtonGroup variant="outlined" size="small" fullWidth>
+      <Button
+       startIcon={<LiaSun />}
+       className="!border-gray-400 !text-gray-400"
+      >
+       {t("theme.light")}
+      </Button>
+      <Button
+       startIcon={<HiOutlineMoon size={15} />}
+       className="!border-gray-400 !text-gray-400"
+      >
+       {t("theme.dark")}
+      </Button>
+     </ButtonGroup>
     </div>
-  );
+
+    <Divider className="mt-1" />
+
+    <div className="flex flex-col items-start gap-1.5">
+     <p className="font-[400]">{t("navbarPopoverLangugeHeading")}</p>
+
+     <ButtonGroup variant="outlined" size="small" fullWidth>
+      <Button
+       onClick={() => {
+        i18n.changeLanguage("en");
+        localStorage.setItem("lang", "en");
+        setLanguage("en");
+       }}
+       className={`${
+        language !== "en" ? "!border-gray-400 !text-gray-400" : ""
+       }`}
+      >
+       EN
+      </Button>
+
+      <Button
+       onClick={() => {
+        i18n.changeLanguage("fa");
+        localStorage.setItem("lang", "fa");
+        setLanguage("fa");
+       }}
+       className={`${
+        language !== "fa" ? "!border-gray-400 !text-gray-400" : ""
+       }`}
+      >
+       Fa
+      </Button>
+     </ButtonGroup>
+    </div>
+
+    <Divider className="mt-1" />
+
+    <Button
+     onClick={() => {
+      localStorage.removeItem("name");
+      navigate("/login");
+     }}
+     variant="text"
+     className="!text-black self-start hover:!bg-transparent !mt-2.5"
+     startIcon={<RxExit size={20} />}
+    >
+     {t("navbarPopoverLogout")}
+    </Button>
+   </div>
+  </div>
+ );
 };
 
 export default NavbarPopoverContent;
