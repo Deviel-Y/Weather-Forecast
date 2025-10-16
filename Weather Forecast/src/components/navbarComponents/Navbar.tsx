@@ -1,21 +1,15 @@
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import logoIcon from "../../assets/logo.png";
 import cityList from "../../data/cityList.json";
-import useCityQueryStore from "../../store";
+import useCityQueryStore from "../../useWeatherinfoStore";
 import NavbarPopoverContent from "./NavbarPopoverContent";
 import OptionPopoverButton from "./OptionPopoverButton";
 
 const Navbar = () => {
  const setCityAttrebutes = useCityQueryStore((s) => s.setCityAttrebutes);
- const currentLanguageSelected = localStorage.getItem("lang");
- const { t, i18n } = useTranslation();
-
- useEffect(() => {
-  i18n.changeLanguage(currentLanguageSelected as "en" | "faS");
- }, [currentLanguageSelected]);
+ const { t } = useTranslation();
 
  return (
   <nav className="flex flex-row items-center justify-between px-6 py-3 bg-[#F3FAFE] h-20 shadow-[0_4px_10px_0_rgba(0,0,0,0.15)]">

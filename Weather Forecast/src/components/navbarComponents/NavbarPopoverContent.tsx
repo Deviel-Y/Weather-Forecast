@@ -1,23 +1,17 @@
 import { Button, ButtonGroup, Divider } from "@mui/material";
-import { default as currentLang } from "i18next";
-import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { HiOutlineMoon } from "react-icons/hi2";
 import { LiaSun } from "react-icons/lia";
 import { RxExit } from "react-icons/rx";
 import { useNavigate } from "react-router";
+import useWeatherinfoStore from "../../useLanguageStore";
 
 const NavbarPopoverContent = () => {
- const [language, setLanguage] = useState<"fa" | "en">(
-  currentLang.language as "fa" | "en"
- );
- const navigate = useNavigate();
- const currentLanguageSelected = localStorage.getItem("lang");
- const { t, i18n } = useTranslation();
+ const currentLangStore = useWeatherinfoStore((s) => s.currentLang);
+ const setCurrentLangStore = useWeatherinfoStore((s) => s.setCurrentLang);
 
- useEffect(() => {
-  i18n.changeLanguage(currentLanguageSelected as "fa" | "en");
- }, [currentLanguageSelected]);
+ const navigate = useNavigate();
+ const { t, i18n } = useTranslation();
 
  return (
   <div className="w-56 h-60 rounded-lg px-4 py-3">
@@ -51,10 +45,11 @@ const NavbarPopoverContent = () => {
        onClick={() => {
         i18n.changeLanguage("en");
         localStorage.setItem("lang", "en");
-        setLanguage("en");
+
+        setCurrentLangStore("en");
        }}
        className={`${
-        language !== "en" ? "!border-gray-400 !text-gray-400" : ""
+        currentLangStore !== "en" ? "!border-gray-400 !text-gray-400" : ""
        }`}
       >
        EN
@@ -64,10 +59,10 @@ const NavbarPopoverContent = () => {
        onClick={() => {
         i18n.changeLanguage("fa");
         localStorage.setItem("lang", "fa");
-        setLanguage("fa");
+        setCurrentLangStore("fa");
        }}
        className={`${
-        language !== "fa" ? "!border-gray-400 !text-gray-400" : ""
+        currentLangStore !== "fa" ? "!border-gray-400 !text-gray-400" : ""
        }`}
       >
        Fa
