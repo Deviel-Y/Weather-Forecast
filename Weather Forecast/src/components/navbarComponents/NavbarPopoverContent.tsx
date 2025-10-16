@@ -4,11 +4,15 @@ import { HiOutlineMoon } from "react-icons/hi2";
 import { LiaSun } from "react-icons/lia";
 import { RxExit } from "react-icons/rx";
 import { useNavigate } from "react-router";
-import useWeatherinfoStore from "../../useLanguageStore";
+import {
+ default as useLanguageStore,
+ default as useWeatherinfoStore,
+} from "../../useLanguageStore";
 
 const NavbarPopoverContent = () => {
  const currentLangStore = useWeatherinfoStore((s) => s.currentLang);
  const setCurrentLangStore = useWeatherinfoStore((s) => s.setCurrentLang);
+ const setDir = useLanguageStore((s) => s.setDir);
 
  const navigate = useNavigate();
  const { t, i18n } = useTranslation();
@@ -45,8 +49,10 @@ const NavbarPopoverContent = () => {
        onClick={() => {
         i18n.changeLanguage("en");
         localStorage.setItem("lang", "en");
+        localStorage.setItem("dir", "ltr");
         document.documentElement.dir = "ltr";
         setCurrentLangStore("en");
+        setDir("ltr");
        }}
        className={`${
         currentLangStore !== "en" ? "!border-gray-400 !text-gray-400" : ""
@@ -59,8 +65,10 @@ const NavbarPopoverContent = () => {
        onClick={() => {
         i18n.changeLanguage("fa");
         localStorage.setItem("lang", "fa");
+        localStorage.setItem("dir", "rtl");
         document.documentElement.dir = "rtl";
         setCurrentLangStore("fa");
+        setDir("rtl");
        }}
        className={`${
         currentLangStore !== "fa" ? "!border-gray-400 !text-gray-400" : ""
