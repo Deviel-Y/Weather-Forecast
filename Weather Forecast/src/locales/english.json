@@ -85,5 +85,15 @@
   "October",
   "November",
   "December"
- ]
+ ],
+
+ "twoWeekForecast": "2 weeks Forecast",
+ "today": "Today",
+ "Sun": "Sun",
+ "Mon": "Mon",
+ "Tue": "Tue",
+ "Wed": "Wed",
+ "Thu": "Thu",
+ "Fri": "Fri",
+ "Sat": "Sat"
 }
