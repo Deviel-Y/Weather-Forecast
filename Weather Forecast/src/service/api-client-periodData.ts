@@ -5,25 +5,20 @@ const axiosInstance = axios.create({
  params: {
   daily: "temperature_2m_mean",
   timezone: "auto",
+  start_date: `${new Date().getFullYear()}-01-01`,
+  end_date: `${new Date().getFullYear()}-${
+   new Date().getMonth() + 1
+  }-${new Date().getDate()}`,
  },
 });
 
 class APIClientMonthlyData<T> {
  private latitude: number;
  private longitude: number;
- private start_date: string;
- private end_date: string;
 
- constructor(
-  latitude: number,
-  longitude: number,
-  start_date: string,
-  end_date: string
- ) {
+ constructor(latitude: number, longitude: number) {
   this.latitude = latitude;
   this.longitude = longitude;
-  this.start_date = start_date;
-  this.end_date = end_date;
  }
 
  getMonthlyData = async () => {
@@ -31,8 +26,6 @@ class APIClientMonthlyData<T> {
    params: {
     latitude: this.latitude,
     longitude: this.longitude,
-    start_date: this.start_date,
-    end_date: this.end_date,
    },
   });
 

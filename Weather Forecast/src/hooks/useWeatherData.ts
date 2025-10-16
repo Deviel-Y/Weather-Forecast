@@ -36,7 +36,6 @@ export interface WeeklyDataType {
 }
 
 const useCurrentWeather = () => {
- const now = new Date();
  const { latitude, longitude, name } = useWeatherinfoStore(
   (state) => state.cityAttrebutes
  );
@@ -62,9 +61,7 @@ const useCurrentWeather = () => {
     queryFn: () => {
      const apiClient = new APIClientMonthlyData<WeatherDataType>(
       latitude!,
-      longitude!,
-      `${now.getFullYear()}-01-01`,
-      `${now.getFullYear}-${now.getMonth()}-${now.getDate()}`
+      longitude!
      );
 
      return apiClient.getMonthlyData();
