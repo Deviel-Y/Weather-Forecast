@@ -45,6 +45,7 @@ const TwoWeekWeatherData = ({ weeklyWeatherData }: Props) => {
    </p>
 
    <motion.div
+    key={dir}
     dir={dir}
     className="w-full overflow-hidden"
     ref={constraintsRef}
@@ -52,7 +53,10 @@ const TwoWeekWeatherData = ({ weeklyWeatherData }: Props) => {
     <motion.div
      ref={scrollRef}
      drag="x"
-     dragConstraints={{ left: -dragWidth, right: 0 }}
+     dragConstraints={{
+      left: dir === "rtl" ? 0 : -dragWidth,
+      right: dir === "rtl" ? dragWidth : 0,
+     }}
      dragElastic={0.2}
      className="
               flex flex-row justify-start gap-[18px]

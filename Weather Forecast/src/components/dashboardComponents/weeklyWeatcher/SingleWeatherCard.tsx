@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import useLanguageStore from "../../../useLanguageStore";
 
 interface Props {
  date: string;
@@ -8,8 +9,12 @@ interface Props {
 
 const SingleWeatherCard = ({ date, figure, temperature }: Props) => {
  const { t } = useTranslation();
+ const dir = useLanguageStore((s) => s.dir);
  return (
-  <div className="bg-[#CDD9E0] rounded-3xl pt-11 px-4 w-[104px] h-[266px]">
+  <div
+   dir={dir}
+   className="bg-[#CDD9E0] rounded-3xl pt-11 px-4 w-[104px] h-[266px]"
+  >
    <div className="flex flex-col gap-[26px] ">
     <div className="flex flex-col gap-4 justify-between items-center">
      <p className="font-[500] text-sm text-[#003464]">{t(date)}</p>
@@ -25,8 +30,9 @@ const SingleWeatherCard = ({ date, figure, temperature }: Props) => {
      />
     </div>
 
-    <p className="font-[500] text-lg text-center text-[#003464]">
-     {temperature}&#8451;
+    <p className="font-[500] text-lg text-center text-[#003464] flex flex-row rtl:flex-row-reverse items-center justify-center gap-1">
+     <span>{temperature}</span>
+     <span>&#8451;</span>
     </p>
    </div>
   </div>
