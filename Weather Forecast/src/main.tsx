@@ -4,6 +4,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router";
 import router from "./components/router";
+import "./i18n";
 import theme from "./muiTheme";
 
 const queryClient = new QueryClient();
