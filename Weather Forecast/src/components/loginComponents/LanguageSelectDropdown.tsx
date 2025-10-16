@@ -1,13 +1,14 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import type { LanguageType } from "../../i18n";
 
 const LanguageSelectDropdown = () => {
  const savedLang = localStorage.getItem("lang");
  const { t, i18n } = useTranslation();
 
  useEffect(() => {
-  i18n.changeLanguage(savedLang as "en" | "fa");
+  i18n.changeLanguage(savedLang as LanguageType);
  }, [savedLang]);
 
  return (
@@ -20,7 +21,7 @@ const LanguageSelectDropdown = () => {
      i18n.changeLanguage(event.target.value);
      localStorage.setItem("lang", event.target.value);
     }}
-    defaultValue={savedLang as "en" | "fa"}
+    defaultValue={savedLang as LanguageType}
     labelId="demo-simple-select-standard-label"
     id="demo-simple-select-standard"
    >

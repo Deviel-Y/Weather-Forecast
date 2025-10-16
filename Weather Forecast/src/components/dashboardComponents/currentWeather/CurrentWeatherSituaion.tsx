@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 interface Props {
  weatherFigure: string;
  weatherSituation: string;
@@ -9,6 +11,8 @@ const CurrentWeatherSituaion = ({
  feelsLike,
  weatherSituation,
 }: Props) => {
+ const { t } = useTranslation();
+
  return (
   <div className="flex flex-col gap-2 text-[#003464]">
    <div className="justify-self-center w-[155px] h-[115px]">
@@ -20,8 +24,10 @@ const CurrentWeatherSituaion = ({
    </div>
 
    <div>
-    <p className="text-[32px]">{weatherSituation}</p>
-    <p>Feels Like {feelsLike}</p>
+    <p className="text-[32px]">{t(weatherSituation)}</p>
+    <p>
+     {t("feelsLike")} {feelsLike}
+    </p>
    </div>
   </div>
  );
