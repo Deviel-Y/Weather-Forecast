@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import CardContainer from "../../CardContainer";
 import CurrentDate from "./CurrentDate";
 import CurrentTempratureStatus from "./CurrentTempratureStatus";
@@ -22,11 +23,12 @@ const CurrentWeatherCard = ({
  tempraure,
  weatherSituation,
 }: Props) => {
+ const { t } = useTranslation();
  return (
   <CardContainer additionalStyles="flex flex-1 items-center justify-center col-span-5 px-6 pt-5 pb-[17px] max-md:p-5 shadow-[0_4px_10px_0_rgba(0,0,0,0.15)]">
    <div className="flex flex-row justify-between w-full h-full ">
     <div className="flex flex-col gap-2">
-     <LocationChip cityName={cityName} />
+     <LocationChip cityName={t(`cities.${cityName}`)} />
      <CurrentDate />
      <CurrentTempratureStatus
       currentTemp={tempraure.currentTemp}
