@@ -69,5 +69,21 @@
  "Cloudy": "Cloudy",
  "Fog": "Fog",
  "Rainy": "Rainy",
- "snow": "snow"
+ "snow": "snow",
+
+ "averageMonthlyTemp": "میانگین دمای ماهانه",
+ "months": [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+ ]
 }
