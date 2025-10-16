@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import useLanguageStore from "../../../useLanguageStore";
 import type { WeeklyDataOutput } from "../../../utils/getWeeklyWeatherData";
 import {
  weatherCodeMapping,
@@ -14,6 +15,8 @@ interface Props {
 }
 
 const TwoWeekWeatherData = ({ weeklyWeatherData }: Props) => {
+ const dir = useLanguageStore((s) => s.dir);
+
  const constraintsRef = useRef<HTMLDivElement>(null);
  const [dragWidth, setDragWidth] = useState(0);
  const scrollRef = useRef<HTMLDivElement>(null);
@@ -33,12 +36,19 @@ const TwoWeekWeatherData = ({ weeklyWeatherData }: Props) => {
  }, [weeklyWeatherData]);
 
  return (
-  <CardContainer additionalStyles="flex overflow-hidden select-none no-scrollbar flex-col px-[28px] pb-[26px] pt-[30px] max-sm:p-5 gap-5 items-center justify-center">
+  <CardContainer
+   dir={dir}
+   additionalStyles="flex overflow-hidden select-none no-scrollbar flex-col px-[28px] pb-[26px] pt-[30px] max-sm:p-5 gap-5 items-center justify-center"
+  >
    <p className="font-bold font-sans self-start text-[#1B2767] text-2xl">
     {t("twoWeekForecast")}
    </p>
 
-   <motion.div className="w-full overflow-hidden" ref={constraintsRef}>
+   <motion.div
+    dir={dir}
+    className="w-full overflow-hidden"
+    ref={constraintsRef}
+   >
     <motion.div
      ref={scrollRef}
      drag="x"
