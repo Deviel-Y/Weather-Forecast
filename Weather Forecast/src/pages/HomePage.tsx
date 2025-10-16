@@ -13,15 +13,10 @@ import { getMonthlyAverageTemps } from "../utils/getMonthlyAverageTemps";
 import { getWeeklyWeatherData } from "../utils/getWeeklyWeatherData.ts";
 
 const HomePage = () => {
- // const MonthlyTemperatureChart = lazy(
- //  () =>
- //   import(
- //    "../components/dashboardComponents/monthlyAverageChart/MonthlyAverageWheatherDataChart.tsx"
- //   ),
- // );
  const { t } = useTranslation();
  const { currentWeather, monthlyWeather, weeklyWeather } = useCurrentWeather();
  const currentLang = useLanguageStore((s) => s.currentLang);
+ const currentDir = useLanguageStore((s) => s.dir);
  const { currentWeatherTemperatureData, weatherFigure, weatherLabel } =
   getCurrentWeatherProps({ currentWeatherData: currentWeather.data! });
 
@@ -52,7 +47,7 @@ const HomePage = () => {
  );
 
  return (
-  <div className="h-screen w-full flex flex-col">
+  <div dir={currentDir} className="h-screen w-full flex flex-col">
    <Navbar />
 
    <div className="px-6 py-7 max-sm:p-3 flex flex-col gap-6 max-sm:gap-3">
