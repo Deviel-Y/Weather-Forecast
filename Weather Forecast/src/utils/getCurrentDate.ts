@@ -8,12 +8,18 @@ export const getCurrentDate = () => {
  // --- Gregorian (short) ---
  const gregoryDay = date.getDate();
  const gregoryWeekday = date.toLocaleDateString("en-US", { weekday: "long" });
- const gregoryMonth = date.toLocaleString("en-US", { month: "short" });
+ const gregoryMonthInShort = date.toLocaleString("en-US", { month: "short" });
+ const gregoryMonthInLong = date.toLocaleString("en-US", { month: "long" });
  const gregoryYear = date.getFullYear();
- const gregoryTime = date.toLocaleTimeString("en-US", {
+ const gregoryTimeIn12 = date.toLocaleTimeString("en-US", {
   hour: "numeric",
   minute: "2-digit",
   hour12: true,
+ });
+ const gregoryTimeIn24 = date.toLocaleTimeString("en-US", {
+  hour: "numeric",
+  minute: "2-digit",
+  hour12: false,
  });
 
  // --- Jalali ---
@@ -31,10 +37,12 @@ export const getCurrentDate = () => {
  return {
   gregorian: {
    dayOfTheMonth: gregoryDay,
-   month: gregoryMonth,
+   gregoryMonthInShort,
    year: gregoryYear,
    weekday: gregoryWeekday,
-   time: gregoryTime,
+   gregoryTimeIn12,
+   gregoryTimeIn24,
+   gregoryMonthInLong,
   },
   jalali: {
    weekday: jalaliWeekday,
