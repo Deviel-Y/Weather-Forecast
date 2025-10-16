@@ -61,5 +61,13 @@
  "navbarPopoverTheme": "حالت",
  "theme": { "light": "روشن", "dark": "تاریک" },
  "searchYourLocation": "مکان مورد نظر را جستجو کنید",
- "weatherDashboard": "داشبورد آب و هوا"
+ "weatherDashboard": "داشبورد آب و هوا",
+ "highTemp": "بیشینه",
+ "lowTemp": "کمینه",
+ "feelsLike": "احساس میشود",
+ "Sunny": "آفتابی",
+ "Cloudy": "ابری",
+ "Fog": "مه",
+ "Rainy": "بارانی",
+ "snow": "برف"
 }

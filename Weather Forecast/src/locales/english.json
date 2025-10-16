@@ -61,5 +61,13 @@
  "navbarPopoverTheme": "Mode",
  "theme": { "light": "Light", "dark": "Dark" },
  "searchYourLocation": "Search Your Location",
- "weatherDashboard": "Weather Dashboard"
+ "weatherDashboard": "Weather Dashboard",
+ "highTemp": "High",
+ "lowTemp": "Low",
+ "feelsLike": "Feels Like",
+ "Sunny": "Sunny",
+ "Cloudy": "Cloudy",
+ "Fog": "Fog",
+ "Rainy": "Rainy",
+ "snow": "snow"
 }
