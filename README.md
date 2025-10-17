@@ -35,8 +35,6 @@ It displays detailed weather information for the selected city, organized into t
 - motion, react-icons
 - ESLint, TypeScript
 
-(Your `package.json` is used as the authoritative source of dependencies.)
-
 ---
 
 ## ⚙️ Quick Setup (Windows)
