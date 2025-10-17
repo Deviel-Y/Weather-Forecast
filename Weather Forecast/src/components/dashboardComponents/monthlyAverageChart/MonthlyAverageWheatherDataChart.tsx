@@ -21,13 +21,6 @@ function MonthlyTemperatureChart({ data }: Props) {
    ? data.map((data) => data.monthName)
    : data.map((data) => data.monthName).reverse();
 
- //  const {
- //   palette: {
- //    mode,
- //    customeBackground: { textDark, textLight },
- //   },
- //  } = useTheme();
-
  const { t } = useTranslation();
 
  return (
@@ -35,7 +28,7 @@ function MonthlyTemperatureChart({ data }: Props) {
    <div className="w-full bg-transparent h-full">
     <p
      //  sx={{ color: mode === "dark" ? textDark : textLight }}
-     className="!font-bold !text-lg !font-sans"
+     className="!font-bold !text-lg"
     >
      {t("averageMonthlyTemp")}
     </p>
@@ -57,6 +50,7 @@ function MonthlyTemperatureChart({ data }: Props) {
        disableTicks: true,
        scaleType: "point",
        disableLine: true,
+       offset: 10,
       },
      ]}
      yAxis={[
