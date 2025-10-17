@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, TextField, useTheme } from "@mui/material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import img1 from "../../assets/images/Moon-cloud-fast-wind.png";
@@ -61,8 +62,9 @@ const LoginForm = () => {
       localStorage.setItem("name", data.name);
 
       setTimeout(() => {
+       toast.success(t("welcome"));
        navigate("/");
-      }, 3000);
+      }, 2500);
      })}
      className="flex flex-col max-md:gap-32 items-center justify-between px-[60px] w-full h-full py-28 max-md:py-10"
     >

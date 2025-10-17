@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import rtlPlugin from "@mui/stylis-plugin-rtl";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode, useMemo, type ReactNode } from "react";
+import { Toaster } from "react-hot-toast";
 import { prefixer } from "stylis";
 import useLanguageStore from "./useLanguageStore";
 import useThemeStore from "./useThemeStore";
@@ -86,6 +87,7 @@ const AllProviders = ({ children }: Props) => {
       <CssBaseline />
       {children}
      </ThemeProvider>
+     <Toaster />
     </CacheProvider>
    </QueryClientProvider>
   </StrictMode>
