@@ -1,75 +1,92 @@
-# React + TypeScript + Vite
+# 🌦️ Weather Forecast
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A bilingual (English/Persian) weather forecast web application built with **React 19** and **Vite**.  
+It displays detailed weather information for the selected city, organized into three sections:
 
-Currently, two official plugins are available:
+- **Current Weather** — real-time temperature, humidity, wind, etc.
+- **Monthly Weather** — yearly overview aggregated by month.
+- **Two-Week Forecast** — 14-day outlook.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Bilingual: **English / Persian** (uses `react-i18next`)
+- Automatic **RTL / LTR** direction switching based on language
+- **Light / Dark** theme toggle (MUI theming)
+- Interactive charts with `@mui/x-charts`
+- Fast development using **Vite** and React 19
+- State management: **Zustand**
+- Forms: **react-hook-form** + **zod** for validation
+- Data fetching: **axios** + **@tanstack/react-query**
+- Jalali (Shamsi) date support with **moment-jalaali**
+- Toast notifications via **react-hot-toast**
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## 🧰 Tech Stack (see `package.json`)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React 19, Vite
+- MUI v7, TailwindCSS v4
+- Zustand, React Query (TanStack)
+- axios, date-fns, moment-jalaali
+- i18next + react-i18next
+- react-hook-form, zod
+- motion, react-icons
+- ESLint, TypeScript
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+(Your `package.json` is used as the authoritative source of dependencies.)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## ⚙️ Quick Setup (Windows)
+
+1. Clone the repo:
+
+```powershell
+git clone https://github.com/<your-username>/weather_forecast.git
+cd weather_forecast
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```powershell
+npm install
 ```
+
+3. Start dev server:
+
+```powershell
+npm run dev
+```
+
+4. Open http://localhost:5173 in your browser.
+
+---
+
+## 📂 Project Structure
+
+src/
+┣ components/ # Reusable UI components
+┣ pages/ # Main page layouts and routes
+┣ store/ # Zustand stores
+┣ hooks/ # Custom React hooks
+┣ utils/ # Helper functions (formatters, converters, etc.)
+┣ assets/ # Images, fonts, icons
+┣ i18n/ # Translation files and configuration
+┣ App.tsx # Root component
+┗ main.tsx # Entry point
+
+---
+
+## 🌑 Theming
+
+This project supports both light and dark modes using MUI’s theme system.
+Theme preference is stored persistently and automatically applied on reload.
+
+---
+
+## 🌍 Localization
+
+The application supports English and Persian.
+Direction (ltr or rtl) switches automatically based on the active language.
