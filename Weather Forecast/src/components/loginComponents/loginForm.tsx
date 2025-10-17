@@ -9,9 +9,9 @@ import {
  type LoginSchemaType,
 } from "../../utils/validationSchema";
 
-import img1 from "../../assets/Moon-cloud-fast-wind.png";
-import img2 from "../../assets/Moon-cloud-mid-rain.png";
-import img3 from "../../assets/Sun-cloud-angled-rain.png";
+import img1 from "../../assets/images/Moon-cloud-fast-wind.png";
+import img2 from "../../assets/images/Moon-cloud-mid-rain.png";
+import img3 from "../../assets/images/Sun-cloud-angled-rain.png";
 
 const LoginForm = () => {
  const navigate = useNavigate();

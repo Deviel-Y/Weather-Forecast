@@ -21,7 +21,7 @@ const CurrentDate = () => {
    sx={{ color: mode === "dark" ? textDark : textLight }}
    className="flex flex-col text-[#003464]"
   >
-   <p className="font-[500] text-[32px]">
+   <p className="font-[500] font-sans text-[32px]">
     {currentLang === "en" ? gregorian.weekday : jalali.weekday}
    </p>
 

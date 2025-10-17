@@ -1,8 +1,8 @@
-import clearWeatherFigure from "../assets/Clear.png";
-import rainCloudFigure from "../assets/Rain_cloud.png";
-import snowFigure from "../assets/Snow.png";
-import fogFigure from "../assets/fog.png";
-import partlyCloudFigure from "../assets/partly_cloud.png";
+import clearWeatherFigure from "../assets/images/Clear.png";
+import rainCloudFigure from "../assets/images/Rain_cloud.png";
+import snowFigure from "../assets/images/Snow.png";
+import fogFigure from "../assets/images/fog.png";
+import partlyCloudFigure from "../assets/images/partly_cloud.png";
 
 export type WeatherCodeType = //These numbers are from https://open-meteo.com/en/docs
 

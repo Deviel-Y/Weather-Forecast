@@ -5,7 +5,7 @@ moment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 export const getCurrentDate = () => {
  const date = new Date();
 
- // --- Gregorian (short) ---
+ // --- Gregorian ---
  const gregoryDay = date.getDate();
  const gregoryWeekday = date.toLocaleDateString("en-US", { weekday: "long" });
  const gregoryMonthInShort = date.toLocaleString("en-US", { month: "short" });

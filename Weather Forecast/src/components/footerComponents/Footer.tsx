@@ -2,7 +2,7 @@ import { Box, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { FaRegEnvelope } from "react-icons/fa6";
 import { MdOutlineCalendarMonth } from "react-icons/md";
-import compnayLogo from "../../assets/companyLogo.png";
+import compnayLogo from "../../assets/images/companyLogo.png";
 import useLanguageStore from "../../useLanguageStore";
 import { getCurrentDate } from "../../utils/getCurrentDate";
 
