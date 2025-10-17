@@ -113,16 +113,17 @@ const NavbarPopoverContent = () => {
     <Divider className="mt-1" />
 
     <Button
+     fullWidth
      sx={{ color: mode === "light" ? textLight : textDark }}
      onClick={() => {
       localStorage.removeItem("name");
       navigate("/login");
      }}
      variant="text"
-     className="!self-start hover:!bg-transparent !mt-2.5 rtl:!font-[family-name:var(--font-iran-yekan-reg)]"
+     className="!self-start hover:!bg-transparent !flex !flex-row !justify-start !mt-2.5 rtl:!font-[family-name:var(--font-iran-yekan-reg)]"
      startIcon={<RxExit size={20} />}
     >
-     {t("navbarPopoverLogout")}
+     <span>{t("navbarPopoverLogout")}</span>
     </Button>
    </div>
   </Box>
