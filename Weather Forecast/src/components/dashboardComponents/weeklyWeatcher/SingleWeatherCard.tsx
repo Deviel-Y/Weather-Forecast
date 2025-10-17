@@ -1,3 +1,4 @@
+import { Box, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import useLanguageStore from "../../../useLanguageStore";
 
@@ -10,14 +11,31 @@ interface Props {
 const SingleWeatherCard = ({ date, figure, temperature }: Props) => {
  const { t } = useTranslation();
  const dir = useLanguageStore((s) => s.dir);
+ const {
+  palette: {
+   mode,
+   customeBackground: {
+    weeklyWeatherCardLight,
+    weeklyWeatherCardDark,
+    textDark,
+    textLight,
+   },
+  },
+ } = useTheme();
+
  return (
-  <div
+  <Box
+   sx={{
+    background:
+     mode === "light" ? weeklyWeatherCardLight : weeklyWeatherCardDark,
+    color: mode === "light" ? textLight : textDark,
+   }}
    dir={dir}
-   className="bg-[#CDD9E0] rounded-3xl pt-11 px-4 w-[104px] h-[266px]"
+   className="rounded-3xl pt-11 px-4 w-[104px] h-[266px]"
   >
    <div className="flex flex-col gap-[26px] ">
     <div className="flex flex-col gap-4 justify-between items-center">
-     <p className="font-[500] text-sm text-[#003464]">{t(date)}</p>
+     <p className="font-[500] text-sm ">{t(date)}</p>
      <div className="w-[60px] h-[2px] rounded-full bg-gradient-to-r from-[#36363600] via-[#7E7E7E] to-[#36363600]" />
     </div>
 
@@ -30,12 +48,12 @@ const SingleWeatherCard = ({ date, figure, temperature }: Props) => {
      />
     </div>
 
-    <p className="font-[500] text-lg text-center text-[#003464] flex flex-row rtl:flex-row-reverse items-center justify-center gap-1">
+    <p className="font-[500] text-lg text-center flex flex-row rtl:flex-row-reverse items-center justify-center gap-1">
      <span>{temperature}</span>
      <span>&#8451;</span>
     </p>
    </div>
-  </div>
+  </Box>
  );
 };
 

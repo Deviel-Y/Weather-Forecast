@@ -1,3 +1,4 @@
+import { Box, useTheme } from "@mui/material";
 import useLanguageStore from "../../../useLanguageStore";
 import { getCurrentDate } from "../../../utils/getCurrentDate";
 
@@ -8,8 +9,18 @@ const CurrentDate = () => {
  const gregorianDateFormat = `${gregorian.dayOfTheMonth} ${gregorian.gregoryMonthInShort}, ${gregorian.year}`;
  const jalaliDateFormat = `${jalali.weekday} ${jalali.day} ${jalali.month} ${jalali.year}`;
 
+ const {
+  palette: {
+   mode,
+   customeBackground: { textDark, textLight },
+  },
+ } = useTheme();
+
  return (
-  <div className="flex flex-col text-[#003464]">
+  <Box
+   sx={{ color: mode === "dark" ? textDark : textLight }}
+   className="flex flex-col text-[#003464]"
+  >
    <p className="font-[500] text-[32px]">
     {currentLang === "en" ? gregorian.weekday : jalali.weekday}
    </p>
@@ -23,7 +34,7 @@ const CurrentDate = () => {
       : jalali.jalaliTimeWithMeridiem}
     </p>
    </div>
-  </div>
+  </Box>
  );
 };
 

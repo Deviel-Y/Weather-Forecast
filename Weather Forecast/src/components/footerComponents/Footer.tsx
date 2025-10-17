@@ -1,3 +1,4 @@
+import { Box, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { FaRegEnvelope } from "react-icons/fa6";
 import { MdOutlineCalendarMonth } from "react-icons/md";
@@ -9,12 +10,25 @@ const Footer = () => {
  const { gregorian, jalali } = getCurrentDate();
  const { t } = useTranslation();
  const dir = useLanguageStore((s) => s.dir);
+ const {
+  palette: {
+   mode,
+   customeBackground: { footerDark, footerLight, textDark, textLight },
+  },
+ } = useTheme();
+
  return (
-  <footer className="flex flex-row items-center justify-between px-6 h-[106px] bg-gradient-to-r from-[#F3FAFE] via-[#CCDDDD9E] to-[#F3FAFE]">
+  <Box
+   sx={{
+    background: mode === "dark" ? footerDark : footerLight,
+    color: mode === "dark" ? textDark : textLight,
+   }}
+   className="flex flex-row items-center justify-between px-6 h-[106px]"
+  >
    <div className="flex flex-row items-center gap-3">
     <img src={compnayLogo} alt="company Logo" />
 
-    <p className="text-lg text-[#003464] rtl:text-sm">{t("footerCopyRight")}</p>
+    <p className="text-lg  rtl:text-sm">{t("footerCopyRight")}</p>
    </div>
 
    <div className="flex flex-row items-center gap-10 text-sm">
@@ -41,7 +55,7 @@ const Footer = () => {
      </div>
     </div>
    </div>
-  </footer>
+  </Box>
  );
 };
 

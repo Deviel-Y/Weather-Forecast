@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import CurrentWeatherCard from "../components/dashboardComponents/currentWeather/CurrentWeatherCard";
@@ -46,7 +47,7 @@ const HomePage = () => {
  );
 
  return (
-  <div dir={currentDir} className="h-screen w-full flex flex-col">
+  <Box dir={currentDir} className="h-screen w-full flex flex-col">
    <div className="px-6 py-7 max-sm:p-3 flex flex-col gap-6 max-sm:gap-3">
     <div className="grid grid-cols-12 max-[769px]:flex max-[769px]:flex-col w-full gap-10 max-sm:gap-3">
      <CurrentWeatherCard
@@ -61,7 +62,7 @@ const HomePage = () => {
 
     <TwoWeekWeatherData weeklyWeatherData={weeklyWeatherData} />
    </div>
-  </div>
+  </Box>
  );
 };
 

@@ -1,11 +1,13 @@
 import createCache from "@emotion/cache";
-import { CacheProvider, ThemeProvider } from "@emotion/react";
-import { createTheme } from "@mui/material";
+import { CacheProvider } from "@emotion/react";
+import { CssBaseline } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import rtlPlugin from "@mui/stylis-plugin-rtl";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode, useMemo, type ReactNode } from "react";
 import { prefixer } from "stylis";
 import useLanguageStore from "./useLanguageStore";
+import useThemeStore from "./useThemeStore";
 
 interface Props {
  children: ReactNode;
@@ -14,34 +16,72 @@ interface Props {
 const AllProviders = ({ children }: Props) => {
  const queryClient = new QueryClient();
  const currentDir = useLanguageStore((s) => s.dir);
+ const { mode } = useThemeStore();
 
- const theme = useMemo(
+ const lightTheme = createTheme({
+  palette: {
+   mode: "light",
+   primary: { main: "#2196f3" },
+   customeBackground: {
+    navbarLight: "#F3FAFE",
+    cardSectionLight: "#E1E9EE",
+    footerLight: "linear-gradient(to right, #F3FAFE, #CCDDDD9E, #F3FAFE)",
+    weeklyWeatherCardLight: "#CDD9E0",
+    textLight: "#003464",
+    mainBackgroundLight: "#F3FAFE",
+    loginFormBackgroundLight: "#FFFFFF",
+    loginFigureBackgroundLight: "#D3E1E7",
+   },
+  },
+ });
+
+ const darkTheme = createTheme({
+  palette: {
+   mode: "dark",
+   primary: { main: "#2196f3" },
+
+   customeBackground: {
+    navbarDark: "#151D32",
+    cardSectionDark: "#292F45",
+    footerDark: "linear-gradient(to right, #292F45, #3F4861, #151D32)",
+    weeklyWeatherCardDark: "#3F4861",
+    textDark: "#F3F4F7",
+    mainBackgroundDark: "#151D32",
+    loginFormBackgroundDark: "#292F45",
+    loginFigureBackgroundDark: "#404961",
+   },
+  },
+ });
+
+ const rtlCache = useMemo(
   () =>
-   createTheme({
-    direction: currentDir,
-    palette: { primary: { main: "#2196F3" } },
+   createCache({
+    key: "muirtl",
+    stylisPlugins: [prefixer, rtlPlugin],
    }),
   [currentDir]
  );
 
- const rtlCache = useMemo(() => {
-  return createCache({
-   key: "muirtl",
-   stylisPlugins: [prefixer, rtlPlugin],
-  });
- }, [currentDir]);
-
- const ltrCache = useMemo(() => {
-  return createCache({
-   key: "mui",
-  });
- }, [currentDir]);
+ const ltrCache = useMemo(
+  () =>
+   createCache({
+    key: "mui",
+   }),
+  [currentDir]
+ );
 
  return (
   <StrictMode>
    <QueryClientProvider client={queryClient}>
     <CacheProvider value={currentDir === "rtl" ? rtlCache : ltrCache}>
-     <ThemeProvider theme={theme}>{children}</ThemeProvider>
+     <ThemeProvider
+      theme={mode === "light" ? lightTheme : darkTheme}
+      defaultMode="light"
+      disableTransitionOnChange
+     >
+      <CssBaseline />
+      {children}
+     </ThemeProvider>
     </CacheProvider>
    </QueryClientProvider>
   </StrictMode>

@@ -1,14 +1,17 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, TextField } from "@mui/material";
+import { Box, Button, TextField, useTheme } from "@mui/material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
-import loginPagePicture from "../../assets/loginPagePicture.png";
 import {
  loginSchema,
  type LoginSchemaType,
 } from "../../utils/validationSchema";
+
+import img1 from "../../assets/Moon-cloud-fast-wind.png";
+import img2 from "../../assets/Moon-cloud-mid-rain.png";
+import img3 from "../../assets/Sun-cloud-angled-rain.png";
 
 const LoginForm = () => {
  const navigate = useNavigate();
@@ -24,9 +27,33 @@ const LoginForm = () => {
   resolver: zodResolver(loginSchema),
  });
 
+ const {
+  palette: {
+   mode,
+   customeBackground: {
+    loginFormBackgroundDark,
+    loginFormBackgroundLight,
+    loginFigureBackgroundDark,
+    loginFigureBackgroundLight,
+   },
+  },
+ } = useTheme();
+
  return (
-  <div className="flex flex-row w-[960px] max-md:w-full h-[560px] max-md:h-fit bg-white rounded-xl shadow-[0_4px_8px_0_rgba(0,0,0,0.25)]">
-   <div className=" flex flex-col items-center flex-1 w-[506px] max-md:w-full">
+  <Box
+   sx={{
+    background:
+     mode === "dark" ? loginFigureBackgroundDark : loginFigureBackgroundLight,
+   }}
+   className="flex  flex-row w-[960px] max-md:w-full h-[560px] max-md:h-fit rounded-xl shadow-[0_4px_8px_0_rgba(0,0,0,0.25)]"
+  >
+   <Box
+    sx={{
+     background:
+      mode === "dark" ? loginFormBackgroundDark : loginFormBackgroundLight,
+    }}
+    className=" flex flex-col items-center flex-1 w-[506px] max-md:w-full"
+   >
     {/* Login Form Side Container */}
     <form
      noValidate
@@ -59,18 +86,23 @@ const LoginForm = () => {
       loadingPosition="end"
       loading={isLoading}
       variant="contained"
+      color="primary"
      >
       {t("loginSubmitButton")}
      </Button>
     </form>
-   </div>
+   </Box>
 
-   <div className="flex justify-center items-center flex-1 bg-[#D3E1E7] max-md:hidden">
-    <div className="flex flex-col pr-11 pl-9 pt-14 pb-[60px]">
-     <img className="scale-110" src={loginPagePicture} alt="loginPagePicture" />
-    </div>
-   </div>
-  </div>
+   <Box className="flex flex-col h-fit flex-1 max-md:hidden relative ">
+    <img src={img2} alt="img1" className="self-end top-16 right-10 absolute" />
+    <img
+     src={img3}
+     alt="img3"
+     className="self-start top-44 right-48 absolute"
+    />
+    <img src={img1} alt="img2" className="self-end top-80 right-10 absolute" />
+   </Box>
+  </Box>
  );
 };
 

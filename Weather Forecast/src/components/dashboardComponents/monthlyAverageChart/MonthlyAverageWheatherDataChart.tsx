@@ -21,12 +21,22 @@ function MonthlyTemperatureChart({ data }: Props) {
    ? data.map((data) => data.monthName)
    : data.map((data) => data.monthName).reverse();
 
+ //  const {
+ //   palette: {
+ //    mode,
+ //    customeBackground: { textDark, textLight },
+ //   },
+ //  } = useTheme();
+
  const { t } = useTranslation();
 
  return (
   <CardContainer additionalStyles="flex flex-col gap-1 col-span-7 p-4 max-sm:p-5 w-full ps-8 rtl:ps-5 max-sm:p-1">
    <div className="w-full bg-transparent h-full">
-    <p className="font-bold text-lg font-sans text-[#1B2767]">
+    <p
+     //  sx={{ color: mode === "dark" ? textDark : textLight }}
+     className="!font-bold !text-lg !font-sans"
+    >
      {t("averageMonthlyTemp")}
     </p>
 

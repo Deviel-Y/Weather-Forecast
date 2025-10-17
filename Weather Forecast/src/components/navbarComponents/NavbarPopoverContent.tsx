@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Divider } from "@mui/material";
+import { Box, Button, ButtonGroup, Divider, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { HiOutlineMoon } from "react-icons/hi2";
 import { LiaSun } from "react-icons/lia";
@@ -8,6 +8,7 @@ import {
  default as useLanguageStore,
  default as useWeatherinfoStore,
 } from "../../useLanguageStore";
+import useThemeStore from "../../useThemeStore";
 
 const NavbarPopoverContent = () => {
  const currentLangStore = useWeatherinfoStore((s) => s.currentLang);
@@ -16,23 +17,48 @@ const NavbarPopoverContent = () => {
 
  const navigate = useNavigate();
  const { t, i18n } = useTranslation();
+ const { setTheme } = useThemeStore();
+ const {
+  palette: {
+   mode,
+   customeBackground: {
+    weeklyWeatherCardDark,
+    weeklyWeatherCardLight,
+    textDark,
+    textLight,
+   },
+  },
+ } = useTheme();
 
  return (
-  <div className="w-56 h-60 rounded-lg px-4 py-3">
+  <Box
+   sx={{
+    background: mode === "dark" ? weeklyWeatherCardDark : "#FFFFFF",
+   }}
+   className="w-56 h-60 rounded-lg px-4 py-3"
+  >
    <div className="flex flex-col items-stretch gap-3 w-full">
     <div className="flex flex-col items-start gap-1.5">
      <p className="font-[400]">{t("navbarPopoverTheme")}</p>
 
      <ButtonGroup variant="outlined" size="small" fullWidth>
       <Button
+       sx={{
+        borderColor: mode === "light" ? "#2196F3" : "#8895A0",
+        color: mode === "light" ? "#2196F3" : "#8895A0",
+       }}
+       onClick={() => setTheme("light")}
        startIcon={<LiaSun />}
-       className="!border-gray-400 !text-gray-400"
       >
        {t("theme.light")}
       </Button>
       <Button
+       sx={{
+        borderColor: mode === "dark" ? "#2196F3" : "#8895A0",
+        color: mode === "dark" ? "#2196F3" : "#8895A0",
+       }}
+       onClick={() => setTheme("dark")}
        startIcon={<HiOutlineMoon size={15} />}
-       className="!border-gray-400 !text-gray-400"
       >
        {t("theme.dark")}
       </Button>
@@ -55,7 +81,9 @@ const NavbarPopoverContent = () => {
         setDir("ltr");
        }}
        className={`${
-        currentLangStore !== "en" ? "!border-gray-400 !text-gray-400" : ""
+        currentLangStore !== "en"
+         ? "!border-gray-400 !text-gray-400"
+         : "!border-[#2196F3] !text-[#2196F3]"
        }`}
       >
        EN
@@ -71,7 +99,9 @@ const NavbarPopoverContent = () => {
         setDir("rtl");
        }}
        className={`${
-        currentLangStore !== "fa" ? "!border-gray-400 !text-gray-400" : ""
+        currentLangStore !== "fa"
+         ? "!border-gray-400 !text-gray-400"
+         : "!border-[#2196F3] !text-[#2196F3]"
        }`}
       >
        Fa
@@ -82,18 +112,19 @@ const NavbarPopoverContent = () => {
     <Divider className="mt-1" />
 
     <Button
+     sx={{ color: mode === "light" ? textLight : textDark }}
      onClick={() => {
       localStorage.removeItem("name");
       navigate("/login");
      }}
      variant="text"
-     className="!text-black self-start hover:!bg-transparent !mt-2.5"
+     className="!self-start hover:!bg-transparent !mt-2.5"
      startIcon={<RxExit size={20} />}
     >
      {t("navbarPopoverLogout")}
     </Button>
    </div>
-  </div>
+  </Box>
  );
 };
 

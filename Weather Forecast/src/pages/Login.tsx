@@ -1,3 +1,4 @@
+import { Box, useTheme } from "@mui/material";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import LanguageSelectDropdown from "../components/loginComponents/LanguageSelectDropdown";
@@ -14,16 +15,26 @@ const LoginPage = () => {
   if (userName) navigate("/");
  }, []);
 
+ const {
+  palette: {
+   mode,
+   customeBackground: { mainBackgroundDark, mainBackgroundLight },
+  },
+ } = useTheme();
+
  return (
-  <div
+  <Box
+   sx={{
+    background: mode === "dark" ? mainBackgroundDark : mainBackgroundLight,
+   }}
    dir={currentDir}
-   className="w-full h-screen flex flex-row justify-center items-center bg-[#F3FAFE] max-md:px-10"
+   className="w-full h-screen flex flex-row justify-center items-center max-md:px-10"
   >
-   <div className="w-full h-full flex flex-col items-center justify-center gap-5">
+   <Box className="w-full h-full flex flex-col items-center justify-center gap-5">
     <LoginForm />
     <LanguageSelectDropdown />
-   </div>
-  </div>
+   </Box>
+  </Box>
  );
 };
 

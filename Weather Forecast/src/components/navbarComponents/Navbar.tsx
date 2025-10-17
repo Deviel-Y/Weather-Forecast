@@ -1,3 +1,4 @@
+import { Box, Typography, useTheme } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { useTranslation } from "react-i18next";
@@ -10,14 +11,31 @@ import OptionPopoverButton from "./OptionPopoverButton";
 const Navbar = () => {
  const setCityAttrebutes = useCityQueryStore((s) => s.setCityAttrebutes);
  const { t } = useTranslation();
+ const {
+  palette: {
+   mode,
+   customeBackground: { textDark, textLight, navbarDark, navbarLight },
+  },
+ } = useTheme();
 
  return (
-  <nav className="flex flex-row items-center justify-between px-6 py-3 bg-[#F3FAFE] h-20 shadow-[0_4px_10px_0_rgba(0,0,0,0.15)]">
+  <Box
+   sx={{
+    background: mode === "light" ? navbarLight : navbarDark,
+    boxShadow: "0 4px 10px 0 rgba(0,0,0,0.15)",
+   }}
+   className="flex flex-row items-center justify-between px-6 py-3 h-20"
+  >
    <div className="flex flex-row items-center gap-2">
     <img src={logoIcon} alt="Website logo" />
-    <p className="font-[400] text-[12px] text-[#003464]">
+    <Typography
+     sx={{
+      color: mode === "light" ? textLight : textDark,
+     }}
+     className="font-[400] text-[12px]"
+    >
      {t("weatherDashboard")}
-    </p>
+    </Typography>
    </div>
 
    <div className="flex flex-row items-center gap-2 w6">
@@ -48,7 +66,7 @@ const Navbar = () => {
      <NavbarPopoverContent />
     </OptionPopoverButton>
    </div>
-  </nav>
+  </Box>
  );
 };
 

@@ -1,3 +1,4 @@
+import { Box, useTheme } from "@mui/material";
 import type { ReactNode } from "react";
 import type { DirType } from "../useLanguageStore";
 
@@ -8,10 +9,20 @@ interface Props {
 }
 
 const CardContainer = ({ children, additionalStyles, dir }: Props) => {
+ const theme = useTheme();
  return (
-  <div dir={dir} className={`${additionalStyles} bg-[#E1E9EE] rounded-3xl`}>
+  <Box
+   sx={{
+    background:
+     theme.palette.mode === "light"
+      ? theme.palette.customeBackground.cardSectionLight
+      : theme.palette.customeBackground.cardSectionDark,
+   }}
+   dir={dir}
+   className={`${additionalStyles} rounded-3xl`}
+  >
    {children}
-  </div>
+  </Box>
  );
 };
 
