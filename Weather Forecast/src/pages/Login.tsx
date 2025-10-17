@@ -1,6 +1,7 @@
 import { Box, useTheme } from "@mui/material";
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import { FaGithub } from "react-icons/fa6";
+import { Link, useNavigate } from "react-router";
 import LanguageSelectDropdown from "../components/loginComponents/LanguageSelectDropdown";
 import LoginForm from "../components/loginComponents/loginForm";
 import useLanguageStore from "../useLanguageStore";
@@ -34,6 +35,13 @@ const LoginPage = () => {
     <LoginForm />
     <LanguageSelectDropdown />
    </Box>
+
+   <Link
+    to="https://github.com/Deviel-Y/Weather-Forecast"
+    className="absolute bottom-3 right-3 cursor-pointer animate-bounce"
+   >
+    <FaGithub size={50} />
+   </Link>
   </Box>
  );
 };
