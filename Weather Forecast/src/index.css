@@ -1,12 +1,48 @@
 @import "tailwindcss";
 
-@layer utilities {
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
+/* Define font faces */
+@font-face {
+ font-family: "IranYekanReg";
+ src: url("./assets/fonts/IRANYekanRegular.ttf") format("truetype");
+ font-weight: normal;
+ font-style: normal;
+ font-display: swap;
+}
 
-    .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
+/* Apply IranYekanReg to all RTL content */
+[dir="rtl"] {
+ font-family: var(--font-iran-yekan-reg) !important;
+}
+
+/* Make placeholders also use IranYekanReg */
+[dir="rtl"] ::placeholder {
+ font-family: var(--font-iran-yekan-reg) !important;
+ direction: rtl !important;
+ text-align: right !important;
+}
+
+@font-face {
+ font-family: "IranYekanBold";
+ src: url("./assets/fonts/IRANYekanBold.ttf") format("truetype");
+ font-weight: bold;
+ font-style: normal;
+ font-display: swap;
+}
+
+/* Define utilities */
+@layer utilities {
+ .no-scrollbar::-webkit-scrollbar {
+  display: none;
+ }
+
+ .no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+ }
+}
+
+/* Define theme extensions in @theme */
+@theme {
+ --font-iran-yekan-reg: "IranYekanReg", "Tahoma", "sans-serif";
+ --font-iran-yekan-bold: "IranYekanBold", "Tahoma", "sans-serif";
 }
