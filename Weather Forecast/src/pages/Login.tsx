@@ -30,7 +30,7 @@ const LoginPage = () => {
    dir={currentDir}
    className="w-full h-screen flex flex-row justify-center items-center max-md:px-10"
   >
-   <Box className="w-full h-full flex flex-col items-center justify-center gap-5">
+   <Box className="w-full h-full flex flex-col items-center justify-center gap-5 ">
     <LoginForm />
     <LanguageSelectDropdown />
    </Box>

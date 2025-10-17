@@ -4,14 +4,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
+import img1 from "../../assets/images/Moon-cloud-fast-wind.png";
+import img2 from "../../assets/images/Moon-cloud-mid-rain.png";
+import img3 from "../../assets/images/Sun-cloud-angled-rain.png";
 import {
  loginSchema,
  type LoginSchemaType,
 } from "../../utils/validationSchema";
-
-import img1 from "../../assets/images/Moon-cloud-fast-wind.png";
-import img2 from "../../assets/images/Moon-cloud-mid-rain.png";
-import img3 from "../../assets/images/Sun-cloud-angled-rain.png";
 
 const LoginForm = () => {
  const navigate = useNavigate();
@@ -68,7 +67,9 @@ const LoginForm = () => {
      className="flex flex-col max-md:gap-32 items-center justify-between px-[60px] w-full h-full py-28 max-md:py-10"
     >
      <div className=" w-full gap-8 flex flex-col items-center">
-      <h1 className="font-bold text-2xl">{t("loginTitle")}</h1>
+      <h1 className="font-bold text-2xl rtl:!font-[family-name:var(--font-iran-yekan-reg)]">
+       {t("loginTitle")}
+      </h1>
 
       <TextField
        error={!!errors.name?.message}
@@ -82,7 +83,7 @@ const LoginForm = () => {
 
      <Button
       type="submit"
-      className="w-full h-11"
+      className="w-full h-11 rtl:!font-[family-name:var(--font-iran-yekan-reg)]"
       loadingPosition="end"
       loading={isLoading}
       variant="contained"
