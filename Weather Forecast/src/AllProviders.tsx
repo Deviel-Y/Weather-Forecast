@@ -19,6 +19,9 @@ const AllProviders = ({ children }: Props) => {
  const { mode } = useThemeStore();
 
  const lightTheme = createTheme({
+  typography: {
+   fontFamily: currentDir === "rtl" ? "IranYekanReg" : "roboto",
+  },
   palette: {
    mode: "light",
    primary: { main: "#2196f3" },
@@ -36,10 +39,12 @@ const AllProviders = ({ children }: Props) => {
  });
 
  const darkTheme = createTheme({
+  typography: {
+   fontFamily: currentDir === "rtl" ? "IranYekanReg" : "roboto",
+  },
   palette: {
    mode: "dark",
    primary: { main: "#2196f3" },
-
    customeBackground: {
     navbarDark: "#151D32",
     cardSectionDark: "#292F45",
@@ -76,8 +81,7 @@ const AllProviders = ({ children }: Props) => {
     <CacheProvider value={currentDir === "rtl" ? rtlCache : ltrCache}>
      <ThemeProvider
       theme={mode === "light" ? lightTheme : darkTheme}
-      defaultMode="light"
-      disableTransitionOnChange
+      defaultMode="system"
      >
       <CssBaseline />
       {children}

@@ -21,12 +21,7 @@ const NavbarPopoverContent = () => {
  const {
   palette: {
    mode,
-   customeBackground: {
-    weeklyWeatherCardDark,
-    weeklyWeatherCardLight,
-    textDark,
-    textLight,
-   },
+   customeBackground: { weeklyWeatherCardDark, textDark, textLight },
   },
  } = useTheme();
 
@@ -39,7 +34,9 @@ const NavbarPopoverContent = () => {
   >
    <div className="flex flex-col items-stretch gap-3 w-full">
     <div className="flex flex-col items-start gap-1.5">
-     <p className="font-[400]">{t("navbarPopoverTheme")}</p>
+     <p className="font-[400] rtl:font-[family-name:var(--font-iran-yekan-reg)]">
+      {t("navbarPopoverTheme")}
+     </p>
 
      <ButtonGroup variant="outlined" size="small" fullWidth>
       <Button
@@ -47,6 +44,7 @@ const NavbarPopoverContent = () => {
         borderColor: mode === "light" ? "#2196F3" : "#8895A0",
         color: mode === "light" ? "#2196F3" : "#8895A0",
        }}
+       className="rtl:!font-[family-name:var(--font-iran-yekan-reg)]"
        onClick={() => setTheme("light")}
        startIcon={<LiaSun />}
       >
@@ -57,6 +55,7 @@ const NavbarPopoverContent = () => {
         borderColor: mode === "dark" ? "#2196F3" : "#8895A0",
         color: mode === "dark" ? "#2196F3" : "#8895A0",
        }}
+       className="rtl:!font-[family-name:var(--font-iran-yekan-reg)]"
        onClick={() => setTheme("dark")}
        startIcon={<HiOutlineMoon size={15} />}
       >
@@ -68,7 +67,9 @@ const NavbarPopoverContent = () => {
     <Divider className="mt-1" />
 
     <div className="flex flex-col items-start gap-1.5">
-     <p className="font-[400]">{t("navbarPopoverLangugeHeading")}</p>
+     <p className="font-[400] rtl:!font-[family-name:var(--font-iran-yekan-reg)]">
+      {t("navbarPopoverLangugeHeading")}
+     </p>
 
      <ButtonGroup variant="outlined" size="small" fullWidth>
       <Button
@@ -118,7 +119,7 @@ const NavbarPopoverContent = () => {
       navigate("/login");
      }}
      variant="text"
-     className="!self-start hover:!bg-transparent !mt-2.5"
+     className="!self-start hover:!bg-transparent !mt-2.5 rtl:!font-[family-name:var(--font-iran-yekan-reg)]"
      startIcon={<RxExit size={20} />}
     >
      {t("navbarPopoverLogout")}

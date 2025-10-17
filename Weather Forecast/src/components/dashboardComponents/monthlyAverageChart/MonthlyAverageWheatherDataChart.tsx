@@ -26,12 +26,7 @@ function MonthlyTemperatureChart({ data }: Props) {
  return (
   <CardContainer additionalStyles="flex flex-col gap-1 col-span-7 p-4 max-sm:p-5 w-full ps-8 rtl:ps-5 max-sm:p-1">
    <div className="w-full bg-transparent h-full">
-    <p
-     //  sx={{ color: mode === "dark" ? textDark : textLight }}
-     className="!font-bold !text-lg"
-    >
-     {t("averageMonthlyTemp")}
-    </p>
+    <p className="!font-bold !text-lg">{t("averageMonthlyTemp")}</p>
 
     <svg width="0" height="0">
      <defs>
@@ -51,13 +46,22 @@ function MonthlyTemperatureChart({ data }: Props) {
        scaleType: "point",
        disableLine: true,
        offset: 10,
+       labelStyle: {
+        fontSize: 12,
+        fill: "#000",
+       },
       },
      ]}
      yAxis={[
       {
        min: Math.min(...temps) - 3,
        max: Math.max(...temps) + 2,
-       labelStyle: { fontSize: 12, fill: "#000" },
+       tickLabelStyle: {
+        fontFamily:
+         dir === "rtl"
+          ? "var(--font-iran-yekan-reg)"
+          : "Roboto, Arial, sans-serif",
+       },
        position: dir === "rtl" ? "right" : "left",
        disableTicks: true,
        disableLine: true,

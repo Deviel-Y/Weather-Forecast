@@ -50,7 +50,7 @@ const TwoWeekWeatherData = ({ weeklyWeatherData }: Props) => {
   >
    <Typography
     sx={{ color: mode === "dark" ? textDark : textLight }}
-    className="!font-bold font-sans self-start !text-2xl "
+    className="!font-bold !font-sans self-start !text-2xl"
    >
     {t("twoWeekForecast")}
    </Typography>

@@ -14,14 +14,29 @@ const LanguageSelectDropdown = () => {
  }, [savedLang]);
 
  return (
-  <FormControl variant="standard" sx={{ m: 1, minWidth: 200 }}>
+  <FormControl
+   variant="standard"
+   sx={{
+    minWidth: 200,
+   }}
+  >
    <InputLabel id="demo-simple-select-standard-label">
     {t("languageSelectDropdownPlaceholder")}
    </InputLabel>
+
    <Select
+    sx={{
+     "& .MuiInputBase-input": {
+      fontFamily: "var(--font-iran-yekan-reg)",
+     },
+     "& .MuiInputLabel-root": {
+      fontFamily: "var(--font-iran-yekan-reg)",
+     },
+    }}
     onChange={(event) => {
      i18n.changeLanguage(event.target.value);
      localStorage.setItem("lang", event.target.value);
+     localStorage.setItem("dir", event.target.value === "en" ? "ltr" : "rtl");
      setDir(event.target.value === "en" ? "ltr" : "rtl");
     }}
     defaultValue={savedLang as LanguageType}
@@ -29,7 +44,17 @@ const LanguageSelectDropdown = () => {
     id="demo-simple-select-standard"
    >
     {languages.map((lang) => (
-     <MenuItem value={lang.value}>{lang.label}</MenuItem>
+     <MenuItem
+      sx={{
+       "& .MuiMenuItem-root": {
+        fontFamily: "var(--font-iran-yekan-reg)",
+       },
+      }}
+      key={lang.value}
+      value={lang.value}
+     >
+      {lang.label}
+     </MenuItem>
     ))}
    </Select>
   </FormControl>

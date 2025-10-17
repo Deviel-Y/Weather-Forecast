@@ -28,12 +28,12 @@ const CurrentTempratureStatus = ({
    sx={{ color: mode === "dark" ? textDark : textLight }}
    className="flex flex-col text-[#003464]"
   >
-   <p className="font-[500] text-[40px] flex flex-row rtl:flex-row-reverse rtl:justify-end gap-3">
+   <p className="font-[500] text-[40px] ltr:font-sans flex flex-row rtl:flex-row-reverse rtl:justify-end gap-3">
     <span>{currentTemp}</span>
     <span>&#8451;</span>
    </p>
 
-   <div className="flex flex-row gap-x-1 font-sans text-sm -mt-2 rtl:gap-3">
+   <div className="flex flex-row gap-x-1 ltr:font-sans text-sm -mt-2 rtl:gap-3">
     <div className="w-fit flex gap-1 flex-row items-center">
      <p>{t("highTemp")}: </p>
 

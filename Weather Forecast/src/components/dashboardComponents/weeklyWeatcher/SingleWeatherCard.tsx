@@ -48,7 +48,7 @@ const SingleWeatherCard = ({ date, figure, temperature }: Props) => {
      />
     </div>
 
-    <p className="font-[500] text-lg text-center flex flex-row rtl:flex-row-reverse items-center justify-center gap-1">
+    <p className="font-[500] rtl:!font-[family-name:var(--font-iran-yekan-reg)] font-sans text-lg text-center flex flex-row rtl:flex-row-reverse items-center justify-center gap-1">
      <span>{temperature}</span>
      <span>&#8451;</span>
     </p>

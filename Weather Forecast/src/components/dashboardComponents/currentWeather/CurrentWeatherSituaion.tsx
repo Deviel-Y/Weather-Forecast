@@ -36,7 +36,7 @@ const CurrentWeatherSituaion = ({
    <div>
     <p className="text-[32px]">{t(weatherSituation)}</p>
 
-    <p className="flex flex-row rtl:flex-row-reverse rtl:gap-1">
+    <p className="flex ltr:font-sans flex-row rtl:flex-row-reverse gap-1">
      <span>{t("feelsLike")}</span> <span>{feelsLike}</span>
     </p>
    </div>
