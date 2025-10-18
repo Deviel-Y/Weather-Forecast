@@ -1,11 +1,13 @@
 import { createBrowserRouter } from "react-router";
 import HomePage from "../pages/HomePage";
+import HomePageError from "../pages/HomePageError";
 import LoginPage from "../pages/Login";
 import PrivateRoutes from "../PrivateRoutes";
 
 const router = createBrowserRouter([
  {
   element: <PrivateRoutes />,
+  errorElement: <HomePageError />,
   children: [
    {
     path: "/",
