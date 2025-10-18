@@ -9,6 +9,7 @@ interface TempratureProps {
  lowTemp: number;
 }
 
+// This is component is meant to show Current, High and Low Temp in Current Weather Card
 const CurrentTempratureStatus = ({
  currentTemp,
  highTemp,

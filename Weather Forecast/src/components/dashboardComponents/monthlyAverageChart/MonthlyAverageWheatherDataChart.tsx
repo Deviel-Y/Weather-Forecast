@@ -1,4 +1,6 @@
+import { useTheme } from "@mui/material";
 import { LineChart } from "@mui/x-charts/LineChart";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import useLanguageStore from "../../../useLanguageStore";
 import type { MonthlyAverage } from "../../../utils/getMonthlyAverageTemps";
@@ -10,23 +12,37 @@ interface Props {
 
 function MonthlyTemperatureChart({ data }: Props) {
  const dir = useLanguageStore((s) => s.dir);
+ const {
+  palette: { mode },
+ } = useTheme();
 
- const temps =
-  dir === "ltr"
-   ? data.map((data) => data.averageTemp)
-   : data.map((data) => data.averageTemp).reverse();
+ const temps = useMemo(
+  () =>
+   dir === "ltr"
+    ? data.map((data) => data.averageTemp)
+    : data.map((data) => data.averageTemp).reverse(),
+  [data]
+ );
 
- const months =
-  dir === "ltr"
-   ? data.map((data) => data.monthName)
-   : data.map((data) => data.monthName).reverse();
+ //  data contains two array typed variables that are used in both Y and X axis
+ const months = useMemo(
+  () =>
+   dir === "ltr"
+    ? data.map((data) => data.monthName)
+    : data.map((data) => data.monthName).reverse(),
+  [data]
+ );
 
  const { t } = useTranslation();
 
  return (
   <CardContainer additionalStyles="flex flex-col gap-1 col-span-7 p-4 max-sm:p-5 w-full ps-8 rtl:ps-5 max-sm:p-1">
    <div className="w-full bg-transparent h-full">
-    <p className="!font-bold !text-lg text-[#1B2767]">
+    <p
+     className={`!font-bold !text-lg ${
+      mode === "dark" ? "text-white" : "!text-[#1B2767]"
+     }`}
+    >
      {t("averageMonthlyTemp")}
     </p>
 
@@ -62,7 +78,7 @@ function MonthlyTemperatureChart({ data }: Props) {
         fontFamily:
          dir === "rtl"
           ? "var(--font-iran-yekan-reg)"
-          : "Roboto, Arial, sans-serif",
+          : "var(--font-OpenSans-Regular)",
        },
        position: dir === "rtl" ? "right" : "left",
        disableTicks: true,

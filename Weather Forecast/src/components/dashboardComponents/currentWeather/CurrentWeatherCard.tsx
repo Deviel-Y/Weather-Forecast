@@ -18,6 +18,7 @@ interface Props {
  };
 }
 
+// Main Current Weather Card
 const CurrentWeatherCard = ({
  weatherFigure,
  cityName,
@@ -35,7 +36,9 @@ const CurrentWeatherCard = ({
    <div className="flex rtl:font-[family-name:var(--font-iran-yekan-reg)] flex-row justify-between w-full h-full ">
     <div className="flex flex-col gap-2">
      <LocationChip cityName={t(`cities.${cityName}`)} />
+
      <CurrentDate />
+
      <CurrentTempratureStatus
       currentTemp={tempraure.currentTemp}
       highTemp={tempraure.highTemp}

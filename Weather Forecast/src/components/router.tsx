@@ -6,6 +6,7 @@ import PrivateRoutes from "../PrivateRoutes";
 
 const router = createBrowserRouter([
  {
+  // Protect "/" route
   element: <PrivateRoutes />,
   errorElement: <HomePageError />,
   children: [

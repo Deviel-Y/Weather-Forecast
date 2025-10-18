@@ -1,10 +1,11 @@
 import type { CurrentWeatherResponseType } from "../hooks/useWeatherData";
 import { weatherCodeMapping, type WeatherCodeType } from "./weatherCodeMapping";
 
-interface Props {
+interface Param {
  currentWeatherData: CurrentWeatherResponseType;
 }
-export const getCurrentWeatherProps = ({ currentWeatherData }: Props) => {
+
+export const getCurrentWeatherProps = ({ currentWeatherData }: Param) => {
  const weatherFigure =
   weatherCodeMapping[
    currentWeatherData?.current?.weather_code as WeatherCodeType

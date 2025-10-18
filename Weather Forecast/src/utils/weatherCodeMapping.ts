@@ -4,27 +4,28 @@ import snowFigure from "../assets/images/Snow.png";
 import fogFigure from "../assets/images/fog.png";
 import partlyCloudFigure from "../assets/images/partly_cloud.png";
 
-export type WeatherCodeType = //These numbers are from https://open-meteo.com/en/docs
-
-  | 0
-  | 1
-  | 2
-  | 3
-  | 45
-  | 48
-  | 51
-  | 53
-  | 55
-  | 61
-  | 63
-  | 66
-  | 67
-  | 80
-  | 81
-  | 82
-  | 71
-  | 73
-  | 75;
+//These numbers are from https://open-meteo.com/en/docs
+//Map each weather code to a string
+export type WeatherCodeType =
+ | 0
+ | 1
+ | 2
+ | 3
+ | 45
+ | 48
+ | 51
+ | 53
+ | 55
+ | 61
+ | 63
+ | 66
+ | 67
+ | 80
+ | 81
+ | 82
+ | 71
+ | 73
+ | 75;
 
 export const weatherCodeMapping: Record<
  WeatherCodeType,

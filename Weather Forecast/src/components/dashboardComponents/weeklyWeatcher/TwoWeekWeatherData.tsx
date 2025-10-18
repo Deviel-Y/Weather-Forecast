@@ -34,6 +34,7 @@ const TwoWeekWeatherData = ({ weeklyWeatherData }: Props) => {
  useEffect(() => {
   if (!scrollRef.current) return;
 
+  // Calculating how much we can drag depend on width of the child component
   const updateDragWidth = () => {
    const scrollWidth = scrollRef.current!.scrollWidth;
    const offsetWidth = scrollRef.current!.offsetWidth;

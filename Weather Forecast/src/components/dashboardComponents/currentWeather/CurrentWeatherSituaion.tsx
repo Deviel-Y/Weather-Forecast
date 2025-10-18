@@ -8,6 +8,7 @@ interface Props {
  feelsLike: number;
 }
 
+// This Component contains weather figure as well as it's feels like etc...
 const CurrentWeatherSituaion = ({
  weatherFigure,
  feelsLike,

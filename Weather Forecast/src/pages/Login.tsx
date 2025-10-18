@@ -11,6 +11,7 @@ const LoginPage = () => {
  const currentDir = useLanguageStore((s) => s.dir);
 
  useEffect(() => {
+  // So authenticated user won't be able to navigate to login page
   const userName = localStorage.getItem("name");
 
   if (userName) navigate("/");

@@ -7,6 +7,12 @@ export interface MonthlyAverage {
  averageTemp: number;
 }
 
+// This heavy calculation is meant to change the incomming respoonse type to what the chart component needs
+// But in real scenario this should be done by DB or at least web server; NOT CLIENT
+// This is why I love nextJS
+
+// The API I used gives the monthly data in days which means almost 360 indexs for day array
+// And another array for temp. So by this way I had to change the structure of the incomming data
 export const getMonthlyAverageTemps = (
  data: WeatherDataType,
  translatedMonthNames: string[],

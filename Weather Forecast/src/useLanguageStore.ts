@@ -3,6 +3,7 @@ import type { LanguageType } from "./i18n";
 
 export type DirType = "rtl" | "ltr";
 
+// Zustand State managment config file that manages both "direction" and "language" state
 interface LanguageStoreType {
  currentLang: LanguageType;
  setCurrentLang: (lang: LanguageType) => void;

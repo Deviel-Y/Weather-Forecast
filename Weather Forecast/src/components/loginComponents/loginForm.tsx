@@ -54,13 +54,15 @@ const LoginForm = () => {
     }}
     className=" flex flex-col items-center flex-1 w-[506px] max-md:w-full"
    >
-    {/* Login Form Side Container */}
     <form
      noValidate
      onSubmit={handleSubmit((data) => {
+      // In here, I saved name into localStorage. this is done because I had to have something to use to prevnet unuthenticated used navigate to homepage
+      // but in real world application, encypted token is saved in cockie
       setIsLoading(true);
       localStorage.setItem("name", data.name);
 
+      // Simulating login Promise
       setTimeout(() => {
        toast.success(t("welcome"));
        navigate("/");

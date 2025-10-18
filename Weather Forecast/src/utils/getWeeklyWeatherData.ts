@@ -7,6 +7,12 @@ export type WeeklyDataOutput = {
  date: string;
 }[];
 
+// This heavy calculation is meant to change the incomming respoonse type to what the chart component needs
+// But in real scenario this should be done by DB or at least web server; NOT CLIENT
+// This is why I love nextJS
+
+// The API I used gives the monthly data in hours
+// And another array for temp and another one for Weather codes. So by this way I had to change the structure of the incomming data
 export const getWeeklyWeatherData = (
  weeklyWeatherData: WeeklyDataType
 ): WeeklyDataOutput => {

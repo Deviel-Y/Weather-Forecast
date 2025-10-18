@@ -75,9 +75,13 @@ const NavbarPopoverContent = () => {
       <Button
        onClick={() => {
         i18n.changeLanguage("en");
+
+        // save the data into localStorage so the app is shown to user the way he/she left it
         localStorage.setItem("lang", "en");
         localStorage.setItem("dir", "ltr");
-        document.documentElement.dir = "ltr";
+        document.documentElement.dir = "ltr"; // change the dir immidiatelly
+
+        // save them in zustant store
         setCurrentLangStore("en");
         setDir("ltr");
        }}

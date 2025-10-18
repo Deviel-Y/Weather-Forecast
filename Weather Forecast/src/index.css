@@ -43,5 +43,5 @@
 /* Define theme extensions in @theme */
 @theme {
  --font-iran-yekan-reg: "IranYekanReg", "Tahoma", "sans-serif";
- --font-Roboto: "OpenSans-Regular", "Tahoma", "sans-serif";
+ --font-OpenSans-Regular: "OpenSans-Regular", "Tahoma", "sans-serif";
 }

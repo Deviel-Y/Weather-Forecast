@@ -1,5 +1,5 @@
 import { Box, Skeleton } from "@mui/material";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import CurrentWeatherCard from "../components/dashboardComponents/currentWeather/CurrentWeatherCard.tsx";
 import TwoWeekWeatherData from "../components/dashboardComponents/weeklyWeatcher/TwoWeekWeatherData.tsx";
@@ -36,13 +36,21 @@ const HomePage = () => {
   }
  );
  const translatedMonths = t("months", { returnObjects: true });
- const monthlyAverageChartData = getMonthlyAverageTemps(
-  monthlyWeather?.data ?? { daily: { temperature_2m_mean: [], time: [] } },
-  translatedMonths as Array<string>,
-  currentLang
+
+ const monthlyAverageChartData = useMemo(
+  () =>
+   getMonthlyAverageTemps(
+    monthlyWeather?.data ?? { daily: { temperature_2m_mean: [], time: [] } },
+    translatedMonths as Array<string>,
+    currentLang
+   ),
+  [monthlyWeather.data]
  );
- const { currentWeatherTemperatureData, weatherFigure, weatherLabel } =
-  getCurrentWeatherProps({ currentWeatherData: currentWeather.data! });
+
+ const { currentWeatherTemperatureData, weatherFigure, weatherLabel } = useMemo(
+  () => getCurrentWeatherProps({ currentWeatherData: currentWeather.data! }),
+  [currentWeather.data]
+ );
 
  const MonthlyTemperatureChart = lazy(
   () =>

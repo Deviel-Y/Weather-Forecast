@@ -19,6 +19,7 @@ const AllProviders = ({ children }: Props) => {
  const currentDir = useLanguageStore((s) => s.dir);
  const { mode } = useThemeStore();
 
+ //  Create theme for light mode
  const lightTheme = createTheme({
   direction: currentDir,
   typography: {
@@ -27,6 +28,8 @@ const AllProviders = ({ children }: Props) => {
   palette: {
    mode: "light",
    primary: { main: "#2196f3" },
+
+   //    this property is created in theme.d.ts file to handle style easily
    customeBackground: {
     navbarLight: "#F3FAFE",
     cardSectionLight: "#E1E9EE",
@@ -61,6 +64,7 @@ const AllProviders = ({ children }: Props) => {
   },
  });
 
+ //  This is for handling RTL or LTR direction
  const rtlCache = useMemo(
   () =>
    createCache({

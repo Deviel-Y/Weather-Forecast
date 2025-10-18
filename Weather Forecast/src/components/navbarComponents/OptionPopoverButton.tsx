@@ -7,6 +7,7 @@ interface Props {
  children: ReactNode;
 }
 
+// Main container of the popOver
 const OptionPopoverButton = ({ children }: Props) => {
  const dir = useLanguageStore((s) => s.dir);
  const [buttonElement, setButtonElement] = useState<HTMLButtonElement | null>(

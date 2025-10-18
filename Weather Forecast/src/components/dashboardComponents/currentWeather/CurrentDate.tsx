@@ -2,6 +2,7 @@ import { Box, useTheme } from "@mui/material";
 import useLanguageStore from "../../../useLanguageStore";
 import { getCurrentDate } from "../../../utils/getCurrentDate";
 
+// This is component is meant to show current date in Current Weather Card
 const CurrentDate = () => {
  const currentLang = useLanguageStore((s) => s.currentLang);
  const { gregorian, jalali } = getCurrentDate();
