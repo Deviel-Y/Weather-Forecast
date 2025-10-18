@@ -8,6 +8,13 @@
  font-style: normal;
  font-display: swap;
 }
+@font-face {
+ font-family: "OpenSans-Regular";
+ src: url("./assets/fonts/OpenSans-Regular.ttf") format("truetype");
+ font-weight: normal;
+ font-style: normal;
+ font-display: swap;
+}
 
 /* Apply IranYekanReg to all RTL content */
 [dir="rtl"] {
@@ -19,14 +26,6 @@
  font-family: var(--font-iran-yekan-reg) !important;
  direction: rtl !important;
  text-align: right !important;
-}
-
-@font-face {
- font-family: "IranYekanBold";
- src: url("./assets/fonts/IRANYekanBold.ttf") format("truetype");
- font-weight: bold;
- font-style: normal;
- font-display: swap;
 }
 
 /* Define utilities */
@@ -44,4 +43,5 @@
 /* Define theme extensions in @theme */
 @theme {
  --font-iran-yekan-reg: "IranYekanReg", "Tahoma", "sans-serif";
+ --font-Roboto: "OpenSans-Regular", "Tahoma", "sans-serif";
 }

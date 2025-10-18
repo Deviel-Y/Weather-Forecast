@@ -21,7 +21,7 @@ const AllProviders = ({ children }: Props) => {
 
  const lightTheme = createTheme({
   typography: {
-   fontFamily: currentDir === "rtl" ? "IranYekanReg" : "roboto",
+   fontFamily: currentDir === "rtl" ? "IranYekanReg" : "OpenSans-Regular",
   },
   palette: {
    mode: "light",
@@ -41,7 +41,7 @@ const AllProviders = ({ children }: Props) => {
 
  const darkTheme = createTheme({
   typography: {
-   fontFamily: currentDir === "rtl" ? "IranYekanReg" : "roboto",
+   fontFamily: currentDir === "rtl" ? "IranYekanReg" : "OpenSans-Regular",
   },
   palette: {
    mode: "dark",
