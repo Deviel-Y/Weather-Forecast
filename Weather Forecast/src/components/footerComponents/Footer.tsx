@@ -18,7 +18,7 @@ const Footer = () => {
  } = useTheme();
 
  return (
-  <footer dir={dir} className="ltr:font-sans">
+  <footer dir={dir}>
    <Box
     sx={{
      background: mode === "dark" ? footerDark : footerLight,

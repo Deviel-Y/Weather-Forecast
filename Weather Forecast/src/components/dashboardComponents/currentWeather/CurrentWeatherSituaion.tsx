@@ -44,9 +44,9 @@ const CurrentWeatherSituaion = ({
    </AnimatePresence>
 
    <div>
-    <p className="text-[32px]">{t(weatherSituation)}</p>
+    <p className="text-[32px] ltr:font-bold">{t(weatherSituation)}</p>
 
-    <p className="flex ltr:font-sans flex-row rtl:flex-row-reverse gap-1">
+    <p className="flex flex-row rtl:flex-row-reverse gap-1">
      <span>{t("feelsLike")}</span> <span>{feelsLike}</span>
     </p>
    </div>
