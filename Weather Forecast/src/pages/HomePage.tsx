@@ -1,8 +1,7 @@
-import { Box } from "@mui/material";
-import { useEffect } from "react";
+import { Box, Skeleton } from "@mui/material";
+import { lazy, Suspense, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import CurrentWeatherCard from "../components/dashboardComponents/currentWeather/CurrentWeatherCard.tsx";
-import MonthlyTemperatureChart from "../components/dashboardComponents/monthlyAverageChart/MonthlyAverageWheatherDataChart.tsx";
 import TwoWeekWeatherData from "../components/dashboardComponents/weeklyWeatcher/TwoWeekWeatherData.tsx";
 import cityList from "../data/cityList.json";
 import useCurrentWeather from "../hooks/useWeatherData";
@@ -15,12 +14,8 @@ import HomePageLoading from "./HomePageLoading.tsx";
 
 const HomePage = () => {
  const { t } = useTranslation();
- const { currentWeather, monthlyWeather, weeklyWeather } = useCurrentWeather();
  const currentLang = useLanguageStore((s) => s.currentLang);
  const currentDir = useLanguageStore((s) => s.dir);
- const { currentWeatherTemperatureData, weatherFigure, weatherLabel } =
-  getCurrentWeatherProps({ currentWeatherData: currentWeather.data! });
-
  const setCityAttrebutes = useCityQueryStore(
   (state) => state.setCityAttrebutes
  );
@@ -33,18 +28,27 @@ const HomePage = () => {
   );
  }, [setCityAttrebutes]);
 
+ const { currentWeather, monthlyWeather, weeklyWeather } = useCurrentWeather();
  const weeklyWeatherData = getWeeklyWeatherData(
   weeklyWeather.data ?? {
    daily: { time: [], weather_code: [] },
    hourly: { temperature_2m: [], time: [] },
   }
  );
-
  const translatedMonths = t("months", { returnObjects: true });
  const monthlyAverageChartData = getMonthlyAverageTemps(
   monthlyWeather?.data ?? { daily: { temperature_2m_mean: [], time: [] } },
   translatedMonths as Array<string>,
   currentLang
+ );
+ const { currentWeatherTemperatureData, weatherFigure, weatherLabel } =
+  getCurrentWeatherProps({ currentWeatherData: currentWeather.data! });
+
+ const MonthlyTemperatureChart = lazy(
+  () =>
+   import(
+    "../components/dashboardComponents/monthlyAverageChart/MonthlyAverageWheatherDataChart.tsx"
+   )
  );
 
  if (
@@ -65,7 +69,18 @@ const HomePage = () => {
       weatherSituation={weatherLabel}
      />
 
-     <MonthlyTemperatureChart data={monthlyAverageChartData} />
+     <Suspense
+      fallback={
+       <Skeleton
+        className="!rounded-4xl"
+        height={230}
+        width="850px"
+        variant="rounded"
+       />
+      }
+     >
+      <MonthlyTemperatureChart data={monthlyAverageChartData} />
+     </Suspense>
     </div>
 
     <TwoWeekWeatherData weeklyWeatherData={weeklyWeatherData} />
