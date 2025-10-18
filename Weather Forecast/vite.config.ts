@@ -1,8 +1,9 @@
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
+import path from "path";
+import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig } from "vite";
 
-// https://vitejs.dev/config/
 export default defineConfig({
  plugins: [
   react({
@@ -11,5 +12,33 @@ export default defineConfig({
    },
   }),
   tailwindcss(),
+  visualizer({ open: false }),
  ],
+
+ resolve: {
+  alias: {
+   "@": path.resolve(__dirname, "./src"),
+  },
+ },
+
+ server: {
+  port: 5173,
+  open: true,
+  host: true,
+ },
+
+ build: {
+  sourcemap: false,
+  minify: "esbuild",
+  chunkSizeWarningLimit: 1500,
+  rollupOptions: {
+   output: {
+    manualChunks: {
+     react: ["react", "react-dom"],
+     mui: ["@mui/material", "@mui/x-charts"],
+     i18n: ["react-i18next", "i18next"],
+    },
+   },
+  },
+ },
 });
