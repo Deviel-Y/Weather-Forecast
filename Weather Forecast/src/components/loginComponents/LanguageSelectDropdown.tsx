@@ -5,6 +5,8 @@ import type { LanguageType } from "../../i18n";
 import useLanguageStore from "../../useLanguageStore";
 
 const LanguageSelectDropdown = () => {
+ const setCurrentLang = useLanguageStore((s) => s.setCurrentLang);
+ const currentLang = useLanguageStore((s) => s.currentLang);
  const setDir = useLanguageStore((s) => s.setDir);
  const savedLang = localStorage.getItem("lang");
  const { t, i18n } = useTranslation();
@@ -38,8 +40,9 @@ const LanguageSelectDropdown = () => {
      localStorage.setItem("lang", event.target.value);
      localStorage.setItem("dir", event.target.value === "en" ? "ltr" : "rtl");
      setDir(event.target.value === "en" ? "ltr" : "rtl");
+     setCurrentLang(event.target.value as LanguageType);
     }}
-    defaultValue={savedLang as LanguageType}
+    defaultValue={currentLang ?? "en"}
     labelId="demo-simple-select-standard-label"
     id="demo-simple-select-standard"
    >

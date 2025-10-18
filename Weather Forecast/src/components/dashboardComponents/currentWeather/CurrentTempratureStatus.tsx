@@ -30,7 +30,7 @@ const CurrentTempratureStatus = ({
   >
    <p className="ltr:font-extrabold text-[40px] flex flex-row rtl:flex-row-reverse rtl:justify-end gap-3">
     <span className=" rtl:font-semibold">{currentTemp}</span>
-    <span>&#8451;</span>
+    <span className="rtl:font-medium">&#8451;</span>
    </p>
 
    <div className="flex flex-row gap-x-1 text-sm -mt-2 rtl:gap-3">

@@ -20,6 +20,7 @@ const AllProviders = ({ children }: Props) => {
  const { mode } = useThemeStore();
 
  const lightTheme = createTheme({
+  direction: currentDir,
   typography: {
    fontFamily: currentDir === "rtl" ? "IranYekanReg" : "OpenSans-Regular",
   },
@@ -40,6 +41,7 @@ const AllProviders = ({ children }: Props) => {
  });
 
  const darkTheme = createTheme({
+  direction: currentDir,
   typography: {
    fontFamily: currentDir === "rtl" ? "IranYekanReg" : "OpenSans-Regular",
   },
